@@ -156,6 +156,9 @@ class LibraryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $library_delete = Library::find($id);
+        Library::where('id', $id)->delete();
+        toast('Success Delete Data Library', 'success');
+        return redirect()->back();
     }
 }

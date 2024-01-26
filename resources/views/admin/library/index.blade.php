@@ -1,7 +1,7 @@
 @extends('admin.layouts.index')
 @section('content')
 <div class="page-wrapper">
-    @if(Auth::user()->role == 'Teachers' || Auth::user()->role == 'Admin')
+    @if(Auth::user()->role == 'Teachers' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
     <div class="content container-fluid">
         @include('sweetalert::alert')
         <div class="page-header">
@@ -87,13 +87,14 @@
         </div>
 
         <div class="row">
-
+            @if(Auth::user()->role == 'Admin')
             <div class="row my-3">
                 <div class="col-md-12 col-lg-5">
                     <button class="btn btn-small btn-primary" onclick="tablelibrary();"> <i class="fa fa-server" title="library"> </i> Table Library </button>
                     <button class="btn btn-small btn-primary" onclick="createlibrary();"> <i class="fa fa-plus-circle" title="create"> </i> Create Library </button>
                 </div>
             </div>
+            @endif
             @foreach($library as $r)
             <div class="col-md-6 col-xl-4 col-sm-12 d-flex">
                 <div class="blog grid-blog flex-fill">
@@ -121,6 +122,7 @@
                         <h3 class="blog-title"><a>{{ $r->course_univesity }}</a></h3>
                         <p>{{ $r->deksripsi_univesity }}</p>
                     </div>
+                    @if(Auth::user()->role == 'Admin')
                     <div class="row">
                         <div class="edit-options">
                             <div class="edit-delete-btn">
@@ -128,11 +130,10 @@
                             </div>
                         </div>
                     </div>
-
+                    @endif
                 </div>
             </div>
             @endforeach
-
 
         </div>
 

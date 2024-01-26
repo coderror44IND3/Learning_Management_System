@@ -1,9 +1,9 @@
 @extends('admin.layouts.index')
 @section('content')
 <div class="page-wrapper">
-    @if(Auth::user()->role == 'Teachers' || Auth::user()->role == 'Admin')
+    @if(Auth::user()->role == 'Teachers' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
     <div class="content container-fluid">
-    
+        @include('sweetalert::alert')
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-12">
@@ -188,16 +188,20 @@
                                     <td>{{ $course->date_univesity }}</td>
                                     <td>{{ $course->deksripsi_univesity }}</td>
                                     @if(Auth::user()->role == 'Admin')
-                                    <td>
-                                        <div class="actions text-center">
-                                            <a href="{{ route('library.edit', $course->id) }}" class="btn btn-sm bg-danger-light">
-                                                <i class="feather-edit"></i>
-                                            </a>
-                                            <a href="edit-teacher.html" class="btn btn-sm bg-danger-light">
-                                                <i class="feather-trash"></i>
-                                            </a>
-                                        </div>
-                                    </td>
+                                    <form method="POST" action="{{ route('library.destroy', $course->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <td>
+                                            <div class="actions text-center">
+                                                <a href="{{ route('library.edit', $course->id) }}" class="btn btn-sm bg-danger-light">
+                                                    <i class="feather-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm bg-danger-light">
+                                                    <i class="feather-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </form>
                                     @endif
                                 </tr>
                             </tbody>
