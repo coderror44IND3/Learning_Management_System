@@ -3,16 +3,14 @@
 <div class="page-wrapper">
     @if(Auth::user()->role == 'Students' || Auth::user()->role == 'Admin')
     <div class="content container-fluid">
-
         @include('sweetalert::alert')
-
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="page-sub-header">
 
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('student.index') }}">Detail Students</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('student.index') }}">Students</a></li>
                             <li class="breadcrumb-item active">
                                 @if(empty(Auth::user()->role))
                                 @else
@@ -24,7 +22,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="row">
             <div class="col-xl-3 col-sm-6 col-12 d-flex">

@@ -12,7 +12,7 @@
                     <div class="page-sub-header">
 
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('teacher.index') }}">Detail Teachers</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('teacher.index') }}">Teachers</a></li>
                             <li class="breadcrumb-item active">
                                 @if(empty(Auth::user()->role))
                                 @else
@@ -24,7 +24,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="row">
             <div class="col-xl-3 col-sm-6 col-12 d-flex">

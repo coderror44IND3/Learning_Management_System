@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Students;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentsControllers extends Controller
 {
@@ -56,7 +57,63 @@ class StudentsControllers extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'photo_students' => 'required|image|mimes:jpg,png,gif,svg|min:2|max:280',
+                'name_students' => 'required|max:50',
+                'birthday_students' => 'required',
+                'gender_students' => 'required',
+                'telp_students' => 'required|max:15',
+                'email_students' => 'required|max:45',
+                'address_students' => 'required',
+                'users_id' => 'required',
+            ],
+
+            /* Message Error Students */
+            [
+                'photo_students.max' => 'Please Input File Max 280',
+                'photo_students.min' => 'Please Input File Min 2 MB',
+                'photo_students.mimes' => 'Please Input jpg,png,gif,svg',
+                'photo_students.image' => 'This File Is Not An Image',
+                'name_students.required' => 'Please Input Full Name Valid',
+                'name_students.max' => 'Please Input Full Name Max 50',
+                'birthday_students.required' => 'Please Input Birthday Valid',
+                'gender_students.required' => 'Please Input Gender Male / Female',
+                'telp_students.required' => 'Please Input Telephone Valid',
+                'telp_students.max' => 'Please Input Telephone Max 15',
+                'email_students.required' => 'Please Input E-Mail Valid',
+                'email_students.max' => 'Please Input E-Mail 45',
+                'address_students.required' => 'Please Input Address Valid',
+                'users_id.required' => 'Please Input users Valid',
+            ]
+        );
+
+        /* Photo New Students */
+        if (!empty($request->photo_students)) {
+            $filename = 'students_' . $request->name_students . '.' . $request->photo_students->extension();
+            $request->photo_students->move(public_path('admin/assets/img/students'), $filename);
+        } else {
+            $filename = '';
+        }
+
+        /* Connection Table DB */
+        try {
+            DB::table('table_students')->insert([
+                'photo_students' => $filename,
+                'name_students' => $request->name_students,
+                'birthday_students' => $request->birthday_students,
+                'telp_students' => $request->telp_students,
+                'gender_students' => $request->gender_students,
+                'email_students' => $request->email_students,
+                'address_students' => $request->address_students,
+                'users_id' => $request->users_id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+            return redirect()->route('student.create')->with('success', 'New Student Data Has Been Successfully Saved');
+        } catch (\Exception $allerStore) {
+            return redirect()->route('student.create')->with('error', 'New Student Data Has Been Error Saved');
+        }
     }
 
     /**
@@ -101,6 +158,11 @@ class StudentsControllers extends Controller
      */
     public function destroy($id)
     {
-        //
+        $detail_students = Students::find($id);
+        if(!empty($detail_students->photo_students))unlink('admin/assets/img/students/' . $detail_students->photo_students);
+
+        Students::where('id', $id)->delete();
+        toast('Success Delete Data Students', 'success');
+        return redirect()->back();
     }
 }

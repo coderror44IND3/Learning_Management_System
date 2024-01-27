@@ -169,9 +169,11 @@
                                     <td>{{ Auth::user()->address }}</td>
                                     <td>
                                         <div class="actions text-center">
+                                            @if(Auth::user()->role == 'Teachers' || Auth::user()->role == 'Admin')
                                             <a href="javascript:;" class="btn btn-sm bg-success-light me-2">
                                                 <i class="feather-eye"></i>
                                             </a>
+                                            @endif
                                             @if(Auth::user()->role == 'Admin')
                                             <a href="edit-teacher.html" class="btn btn-sm bg-danger-light">
                                                 <i class="feather-trash"></i>
@@ -239,7 +241,7 @@
                             <a href="#" class="btn btn-primary"><i class="fas fa-download" title="Downloads" style="font-size: 18px;"></i></a>
                             @endif
                             @if(Auth::user()->role == 'Teachers' || Auth::user()->role == 'Admin')
-                            <button onclick="createteacher()" ; class="btn btn-primary"><i class="fa fa-plus-circle" title="Create" style="font-size: 18px;"></i></button>
+                            <button onclick="createteacher();" class="btn btn-primary"><i class="fa fa-plus-circle" title="Create" style="font-size: 18px;"></i></button>
                             @endif
                         </div>
                     </div>

@@ -167,12 +167,12 @@
                                     <td>{{ Auth::user()->address }}</td>
                                     <td>
                                         <div class="actions text-center">
-                                            @if(Auth::user()->role == 'Admin')
+                                            @if(Auth::user()->role == 'Students' || Auth::user()->role == 'Admin')
                                             <a href="javascript:;" class="btn btn-sm bg-success-light me-2">
                                                 <i class="feather-eye"></i>
                                             </a>
                                             @endif
-                                            @if(Auth::user()->role == 'Students')
+                                            @if(Auth::user()->role == 'Admin')
                                             <a href="edit-teacher.html" class="btn btn-sm bg-danger-light">
                                                 <i class="feather-trash"></i>
                                             </a>
@@ -239,7 +239,7 @@
                             <a href="#" class="btn btn-primary"><i class="fas fa-download" title="Downloads" style="font-size: 18px;"></i></a>
                             @endif
                             @if(Auth::user()->role == 'Students' || Auth::user()->role == 'Admin')
-                            <button onclick="createstudents()" ; class="btn btn-primary"><i class="fa fa-plus-circle" title="Create" style="font-size: 18px;"></i></button>
+                            <button onclick="createstudents();" class="btn btn-primary"><i class="fa fa-plus-circle" title="Create" style="font-size: 18px;"></i></button>
                             @endif
                         </div>
                     </div>
@@ -263,20 +263,24 @@
                             </thead>
                             <tbody class="text-center">
                                 @php $no = 1; @endphp
-                                
+                                @foreach($students as $stud)
                                 <tr class="text-center">
                                     <td>{{ $no }}</td>
                                     <td>
-                                        
+                                        @empty($stud->photo_students)
+                                        <img src="{{ asset ('admin/assets/img/students/not-profile.png') }}" alt="User Image" class="rounded-circle" width="15%" style="width: 50px;">
+                                        @else
+                                        <img src="{{ asset ('admin/assets/img/students/') }}/{{$stud->photo_students}}" alt="User Image" class="rounded-circle" width="15%" style="width: 40px;">
+                                        @endempty
                                     </td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{ $stud->name_students }}</td>
+                                    <td>{{ $stud->gender_students }}</td>
+                                    <td>{{ $stud->birthday_students }}</td>
+                                    <td>{{ $stud->telp_students }}</td>
+                                    <td>{{ $stud->email_students }}</td>
+                                    <td>{{ $stud->address_students }}</td>
                                     @if(Auth::user()->role == 'Admin')
-                                    <form method="POST" action="">
+                                    <form method="POST" action="{{ route('student.destroy', $stud->id) }}">
                                         @csrf
                                         @method('DELETE')
                                         <td>
@@ -294,7 +298,7 @@
                                 </tr>
                             </tbody>
                             @php $no++; @endphp
-                            
+                            @endforeach
                         </table>
                     </div>
                 </div>
