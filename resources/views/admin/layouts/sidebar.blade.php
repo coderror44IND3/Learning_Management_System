@@ -32,7 +32,7 @@
                     <span>University Class</span>
                 </li>
                 <li class="">
-                    <a href="#"><i class="fas fa-book-reader"></i> <span>Classroom</span></a>
+                    <a href="{{ route('classroom.index') }}"><i class="fas fa-book-reader"></i> <span>Classroom</span></a>
                 </li>
                 <li class="">
                     <a href="{{ route('library.index') }}"><i class="fas fa-book-reader"></i> <span>Library</span></a>

@@ -90,12 +90,12 @@
             @if(Auth::user()->role == 'Admin')
             <div class="row my-3">
                 <div class="col-md-12 col-lg-5">
-                    <button class="btn btn-small btn-primary" onclick="tablelibraryy();"> <i class="fa fa-server" title="library"> </i> Library </button>
-                    <button class="btn btn-small btn-primary" onclick="createlibrary();"> <i class="fa fa-plus-circle" title="create"> </i> Create Library </button>
+                    <button class="btn btn-small btn-primary"> <i class="fa fa-server" title="classroom"> </i> Classroom </button>
+                    <button class="btn btn-small btn-primary" onclick="createclassrom();"> <i class="fa fa-plus-circle" title="create"> </i> Create Classroom </button>
                 </div>
             </div>
             @endif
-            @foreach($library as $r)
+            
             <div class="col-md-6 col-xl-4 col-sm-12 d-flex">
                 <div class="blog grid-blog flex-fill">
                     <div class="blog-image">
@@ -106,32 +106,31 @@
                         <ul class="entry-meta meta-item">
                             <li>
                                 <div class="post-author">
-                                    <a href="{{ route('library.index') }}">
+                                    <a href="{{ route('classroom.index') }}">
                                         <img src="{{ asset('admin/assets/img/logo-small.png') }}" alt="Post Author">
                                         <span>
-                                            <span class="post-title">{{ $r->course_univesity }}</span>
-                                            <span class="post-date"><i class="far fa-clock"></i> {{ $r->date_univesity }} </span>
+                                            <span class="post-title"></span>
+                                            <span class="post-date"><i class="far fa-clock"></i>  </span>
                                         </span>
                                     </a>
                                 </div>
                             </li>
                         </ul>
-                        <h3 class="blog-title"><a>{{ $r->course_univesity }}</a></h3>
-                        <p>{{ $r->deksripsi_univesity }}</p>
+                        <h3 class="blog-title"><a></a></h3>
+                        <p></p>
                     </div>
                     @if(Auth::user()->role == 'Admin')
                     <div class="row">
                         <div class="edit-options">
                             <div class="edit-delete-btn">
-                                <a href="{{ route('library.edit', $r->id) }}" class="text-success"><i class="feather-edit-3 me-1"></i> Edit</a>
+                                <a href="" class="text-success"><i class="feather-edit-3 me-1"></i> Edit</a>
                             </div>
                         </div>
                     </div>
                     @endif
                 </div>
             </div>
-            @endforeach
-
+           
         </div>
 
     </div>

@@ -19,7 +19,7 @@ class LibraryController extends Controller
         return view('admin.library.index', compact('library'));
     }
 
-    public function table()
+    public function tablelibraryy()
     {
         $library_table = Library::all();
         return view('admin.library.table', compact('library_table'));
@@ -79,9 +79,9 @@ class LibraryController extends Controller
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
-            return redirect()->route('library.index')->with('success', 'New Library Data Has Been Successfully Saved');
+            return redirect()->route('library.create')->with('success', 'New Library Data Has Been Successfully Saved');
         } catch (\Exception $allerStore) {
-            return redirect()->route('library.index')->with('error', 'New Library Data Has Been Error Saved');
+            return redirect()->route('library.create')->with('error', 'New Library Data Has Been Error Saved');
         }
     }
 

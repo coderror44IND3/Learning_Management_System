@@ -112,7 +112,7 @@
                     <div id="" class="">
                         <a class="list-group-item list-group-item-action active">Teachers</a>
                         <a class="list-group-item list-group-item-action" href="{{ route('presence_teacher.index') }}">Presence Teachers</a>
-                        <a class="list-group-item list-group-item-action" href="#list-item-4">Presence Students</a>
+                        <a class="list-group-item list-group-item-action" href="{{ route('presence_student.index')}}">Presence Students</a>
                     </div>
                 </div>
 

@@ -20,10 +20,15 @@ Route::get('presence_teacher', [App\Http\Controllers\Presence_TeachersController
 
 // Route GET ( 'Students', 'Presence Students' )
 Route::get('student', [App\Http\Controllers\StudentsControllers::class, 'index'])->name('student.index')->middleware('auth');
+Route::get('presence_student', [App\Http\Controllers\Presence_StudentsControllers::class, 'index'])->name('presence_student.index')->middleware('auth');
 
 // Route GET ( 'Library', 'Table Library' )
 Route::get('library', [App\Http\Controllers\LibraryController::class, 'index'])->name('library.index')->middleware('auth');
-Route::get('table', [App\Http\Controllers\LibraryController::class, 'table'])->name('library.table')->middleware('auth');
+Route::get('tablelibraryy', [App\Http\Controllers\LibraryController::class, 'tablelibraryy'])->name('library.table')->middleware('auth');
+
+// Route GET ( 'Classroom', 'Table Classroom' )
+Route::get('classroom', [App\Http\Controllers\ClassroomControllers::class, 'index'])->name('classroom.index')->middleware('auth');
+Route::get('table', [App\Http\Controllers\ClassroomControllers::class, 'table'])->name('classroom.table')->middleware('auth');
 
 // Route GET ( 'Login' )
 Route::get('/login', [App\Http\Controllers\UserController::class, 'index'])->middleware('auth');
@@ -42,7 +47,11 @@ Route::get('upcreate1', [App\Http\Controllers\TeachersControllers::class, 'creat
 Route::get('upcreate2', [App\Http\Controllers\Presence_TeachersControllers::class, 'create'])->name('presence_teacher.create')->middleware('auth');
 Route::get('upcreate3', [App\Http\Controllers\LibraryController::class, 'create'])->name('library.create')->middleware('auth');
 Route::get('upcreate4', [App\Http\Controllers\StudentsControllers::class, 'create'])->name('student.create')->middleware('auth');
-Route::get('tablelibrary', [App\Http\Controllers\LibraryController::class, 'table'])->name('library.table')->middleware('auth');
+Route::get('upcreate5', [App\Http\Controllers\ClassroomControllers::class, 'create'])->name('classroom.create')->middleware('auth');
+
+// Route GET Table ( SweetAlert )
+Route::get('tablelibraryy', [App\Http\Controllers\LibraryController::class, 'tablelibraryy'])->name('library.table')->middleware('auth');
+Route::get('tablepresenceSTD', [App\Http\Controllers\Presence_StudentsControllers::class, 'index'])->name('presence_student_table.index')->middleware('auth');
 
 // Route GET ( 'Edit, Delete' )
 Route::get('teacher/{id}', [App\Http\Controllers\TeachersControllers::class, 'edit'])->name('teacher.edit')->middleware('auth');
@@ -62,9 +71,12 @@ Route::post('searchstudents/searchstudents', [App\Http\Controllers\StudentsContr
 Route::post('teacher/store', [App\Http\Controllers\TeachersControllers::class, 'store'])->name('teacher.store')->middleware('auth');
 Route::post('library/store', [App\Http\Controllers\LibraryController::class, 'store'])->name('library.store')->middleware('auth');
 Route::post('student/store', [App\Http\Controllers\StudentsControllers::class, 'store'])->name('student.store')->middleware('auth');
+Route::post('classroom/store', [App\Http\Controllers\ClassroomControllers::class, 'store'])->name('classroom.store')->middleware('auth');
+
 Route::put('teacher/{id}/', [App\Http\Controllers\TeachersControllers::class, 'update'])->name('teacher.update')->middleware('auth');
 Route::put('library/{id}/', [App\Http\Controllers\LibraryController::class, 'update'])->name('library.update')->middleware('auth');
 Route::put('student/{id}/', [App\Http\Controllers\StudentsControllers::class, 'update'])->name('student.update')->middleware('auth');
+
 Route::delete('teacher/{id}/', [App\Http\Controllers\TeachersControllers::class, 'destroy'])->name('teacher.destroy')->middleware('auth');
 Route::delete('library/{id}/', [App\Http\Controllers\LibraryController::class, 'destroy'])->name('library.destroy')->middleware('auth');
 Route::delete('student/{id}/', [App\Http\Controllers\StudentsControllers::class, 'destroy'])->name('student.destroy')->middleware('auth');
