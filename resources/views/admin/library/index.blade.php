@@ -109,7 +109,7 @@
                         <ul class="entry-meta meta-item">
                             <li>
                                 <div class="post-author">
-                                    <a href="profile.html">
+                                    <a href="{{ route('library.index') }}">
                                         <img src="{{ asset('admin/assets/img/logo-small.png') }}" alt="Post Author">
                                         <span>
                                             <span class="post-title">{{ $r->course_univesity }}</span>

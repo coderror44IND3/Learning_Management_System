@@ -1,7 +1,7 @@
 @extends('admin.layouts.index')
 @section('content')
 <div class="page-wrapper">
-    @if(Auth::user()->role == 'Teachers' || Auth::user()->role == 'Admin')
+    @if(Auth::user()->role == 'Students' || Auth::user()->role == 'Admin')
     <div class="content container-fluid">
 
         @include('sweetalert::alert')
@@ -12,7 +12,7 @@
                     <div class="page-sub-header">
 
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('teacher.index') }}">Detail Teachers</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('student.index') }}">Detail Students</a></li>
                             <li class="breadcrumb-item active">
                                 @if(empty(Auth::user()->role))
                                 @else
@@ -96,7 +96,7 @@
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col-6">
-                                <h5 class="card-title judul-detail">List Teachers</h5>
+                                <h5 class="card-title judul-detail">List Students</h5>
                             </div>
                             <div class="col-6">
                                 <ul class="chart-list-out">
@@ -113,8 +113,8 @@
                     </div>
                     <hr>
                     <div id="" class="">
-                        <a class="list-group-item list-group-item-action" href="{{ route('teacher.index') }}">Teachers</a>
-                        <a class="list-group-item list-group-item-action active">Teacher Add</a>
+                        <a class="list-group-item list-group-item-action" href="{{ route('student.index') }}">Students</a>
+                        <a class="list-group-item list-group-item-action active">Students Add</a>
                     </div>
                 </div>
 
@@ -125,7 +125,7 @@
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col-6">
-                                <h5 class="card-title judul-detail">Create Teachers</h5>
+                                <h5 class="card-title judul-detail">Create Students</h5>
                             </div>
                             <div class="col-6">
                                 <ul class="chart-list-out">
@@ -143,16 +143,16 @@
                     <hr>
                     <div class="card">
                         <div class="card-body">
-                            <form method="POST" action="{{ route('teacher.store') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('student.store') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row mt-3">
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>photo <span class="login-danger">*</span></label>
-                                            <input type="file" name="photo_teachers" value="{{ old('photo_teachers') }}" class="form-control @error('photo_teachers') is-invalid @else is-valid @enderror">
+                                            <input type="file" name="photo_students" value="{{ old('photo_students') }}" class="form-control @error('photo_students') is-invalid @else is-valid @enderror">
 
                                             <!-- Message Error -->
-                                            @error('photo_teachers')
+                                            @error('photo_students')
                                             <div class="invalid-feedback">
                                                 {{$message}}
                                             </div>
@@ -163,10 +163,10 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Name <span class="login-danger">*</span></label>
-                                            <input type="text" name="name_teachers" value="{{ old('name_teachers') }}" class="form-control @error('name_teachers') is-invalid @else is-valid @enderror" placeholder="Full Name">
+                                            <input type="text" name="name_students" value="{{ old('name_students') }}" class="form-control @error('name_students') is-invalid @else is-valid @enderror" placeholder="Full Name">
 
                                             <!-- Message Error -->
-                                            @error('name_teachers')
+                                            @error('name_students')
                                             <div class="invalid-feedback">
                                                 {{$message}}
                                             </div>
@@ -177,10 +177,10 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Telephone <span class="login-danger">*</span></label>
-                                            <input type="text" name="telp_teachers" value="{{ old('telp_teachers') }}" class="form-control @error('telp_teachers') is-invalid @else is-valid @enderror" placeholder="Telephone">
+                                            <input type="text" name="telp_students" value="{{ old('telp_students') }}" class="form-control @error('telp_students') is-invalid @else is-valid @enderror" placeholder="Telephone">
 
                                             <!-- Message Error -->
-                                            @error('telp_teachers')
+                                            @error('telp_students')
                                             <div class="invalid-feedback">
                                                 {{$message}}
                                             </div>
@@ -191,10 +191,10 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>E-Mail <span class="login-danger">*</span></label>
-                                            <input type="text" name="email_teachers" value="{{ old('email_teachers') }}" class="form-control @error('email_teachers') is-invalid @else is-valid @enderror" placeholder="E-Mail">
+                                            <input type="text" name="email_students" value="{{ old('email_students') }}" class="form-control @error('email_students') is-invalid @else is-valid @enderror" placeholder="E-Mail">
 
                                             <!-- Message Error -->
-                                            @error('email_teachers')
+                                            @error('email_students')
                                             <div class="invalid-feedback">
                                                 {{$message}}
                                             </div>
@@ -205,11 +205,11 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Gender <span class="login-danger">*</span></label>
-                                            <input type="radio" class="mt-3 @error('gender_teachers') is-invalid @else is-valid @enderror" value="Male" name="gender_teachers"> Male
-                                            <input type="radio" class="@error('gender_teachers') is-invalid @else is-valid @enderror" value="Female" name="gender_teachers"> Female
+                                            <input type="radio" class="mt-3 @error('gender_students') is-invalid @else is-valid @enderror" value="Male" name="gender_students"> Male
+                                            <input type="radio" class="@error('gender_students') is-invalid @else is-valid @enderror" value="Female" name="gender_students"> Female
 
                                             <!-- Message Error -->
-                                            @error('gender_teachers')
+                                            @error('gender_students')
                                             <div class="invalid-feedback">
                                                 {{$message}}
                                             </div>
@@ -220,10 +220,10 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Date Of Birth <span class="login-danger">*</span></label>
-                                            <input type="date" name="birthday_teachers" value="{{ old('birthday_teachers') }}" class="form-control @error('birthday_teachers') is-invalid @else is-valid @enderror">
+                                            <input type="date" name="birthday_students" value="{{ old('birthday_students') }}" class="form-control @error('birthday_students') is-invalid @else is-valid @enderror">
 
                                             <!-- Message Error -->
-                                            @error('birthday_teachers')
+                                            @error('birthday_students')
                                             <div class="invalid-feedback">
                                                 {{$message}}
                                             </div>
@@ -254,11 +254,11 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Address <span class="login-danger">*</span></label>
-                                            <textarea name="address_teachers" class="form-control @error('address_teachers') is-invalid @else is-valid @enderror" id="address_teachers">{{ old('address_teachers') }}</textarea>
+                                            <textarea name="address_students" class="form-control @error('address_students') is-invalid @else is-valid @enderror" id="address_students">{{ old('address_students') }}</textarea>
                                         </div>
 
                                         <!-- Message Error -->
-                                        @error('address_teachers')
+                                        @error('address_students')
                                         <div class="invalid-feedback">
                                             {{$message}}
                                         </div>
@@ -268,7 +268,7 @@
                                     <div class="col-12">
                                         <div class="" style="float: right;">
                                             <button type="submit" name="proses" value="simpan" id="simpan" class="btn btn-primary">Create</button>
-                                            <a href="{{ route('teacher.index') }}" class="btn btn-primary">Cancel</a>
+                                            <a href="{{ route('student.index') }}" class="btn btn-primary">Cancel</a>
                                         </div>
                                     </div>
                                 </div>

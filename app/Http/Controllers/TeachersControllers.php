@@ -17,21 +17,24 @@ class TeachersControllers extends Controller
     public function index()
     {
         $roleTeacher = auth()->user()->role == 'Teachers';
-        $teachers = User::where('role', $roleTeacher)->where('isactive', true)->first();
+        $teachers_users = User::where('role', $roleTeacher)->where('isactive', true)->first();
 
         $teachers = Teachers::all();
-        return view('admin.teacher.index', compact('teachers'));
+        return view('admin.teacher.index', compact('teachers', 'teachers_users'));
     }
 
     public function searchteacher(Request $request)
     {
+        $roleTeacher = auth()->user()->role == 'Teachers';
+        $teachers_users = User::where('role', $roleTeacher)->where('isactive', true)->first();
+
         $start_search = $request->start_search;
         $end_search = $request->end_search;
 
         $teachers = Teachers::whereDate('created_at', '>=', $start_search)
             ->whereDate('created_at', '<=', $end_search)
             ->get();
-        return view('admin.teacher.index', compact('teachers'));
+        return view('admin.teacher.index', compact('teachers', 'teachers_users'));
     }
 
     /**

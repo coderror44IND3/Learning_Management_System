@@ -1,7 +1,7 @@
 @extends('admin.layouts.index')
 @section('content')
 <div class="page-wrapper">
-    @if(Auth::user()->role == 'Teachers' || Auth::user()->role == 'Admin')
+    @if(Auth::user()->role == 'Students' || Auth::user()->role == 'Admin')
     <div class="content container-fluid">
         @include('sweetalert::alert')
         <div class="page-header">
@@ -93,7 +93,7 @@
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col-6">
-                                <h5 class="card-title judul-detail">List Teachers</h5>
+                                <h5 class="card-title judul-detail">List Students</h5>
                             </div>
                             <div class="col-6">
                                 <ul class="chart-list-out">
@@ -110,9 +110,7 @@
                     </div>
                     <hr>
                     <div id="" class="">
-                        <a class="list-group-item list-group-item-action active">Teachers</a>
-                        <a class="list-group-item list-group-item-action" href="{{ route('presence_teacher.index') }}">Presence Teachers</a>
-                        <a class="list-group-item list-group-item-action" href="#list-item-4">Presence Students</a>
+                        <a class="list-group-item list-group-item-action active">Students</a>
                     </div>
                 </div>
 
@@ -137,7 +135,7 @@
                     </div>
                     <hr>
                     <div class="table-responsive mt-3">
-                        @if($teachers_users)
+                        @if($students_users)
                         <table class="table border-0 star-student table-hover table-center mb-0 table-striped">
                             <thead class="text-center details-teacher" bgcolor='#0D6EFD'>
                                 <tr>
@@ -169,10 +167,12 @@
                                     <td>{{ Auth::user()->address }}</td>
                                     <td>
                                         <div class="actions text-center">
+                                            @if(Auth::user()->role == 'Admin')
                                             <a href="javascript:;" class="btn btn-sm bg-success-light me-2">
                                                 <i class="feather-eye"></i>
                                             </a>
-                                            @if(Auth::user()->role == 'Admin')
+                                            @endif
+                                            @if(Auth::user()->role == 'Students')
                                             <a href="edit-teacher.html" class="btn btn-sm bg-danger-light">
                                                 <i class="feather-trash"></i>
                                             </a>
@@ -195,7 +195,7 @@
             <div class="col-md-12 col-lg-7">
 
                 <div class="student-group-form">
-                    <form action="/searchteacher" method="GET">
+                    <form action="/searchstudents" method="GET">
                         <div class="row">
                             <div class="col-lg-4 col-md-6">
                                 <div class="form-group">
@@ -220,7 +220,7 @@
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col-6">
-                                <h5 class="card-title judul-detail">Teachers</h5>
+                                <h5 class="card-title judul-detail">Students</h5>
                             </div>
                             <div class="col-6">
                                 <ul class="chart-list-out">
@@ -238,8 +238,8 @@
                             @if(Auth::user()->role == 'Admin')
                             <a href="#" class="btn btn-primary"><i class="fas fa-download" title="Downloads" style="font-size: 18px;"></i></a>
                             @endif
-                            @if(Auth::user()->role == 'Teachers' || Auth::user()->role == 'Admin')
-                            <button onclick="createteacher()" ; class="btn btn-primary"><i class="fa fa-plus-circle" title="Create" style="font-size: 18px;"></i></button>
+                            @if(Auth::user()->role == 'Students' || Auth::user()->role == 'Admin')
+                            <button onclick="createstudents()" ; class="btn btn-primary"><i class="fa fa-plus-circle" title="Create" style="font-size: 18px;"></i></button>
                             @endif
                         </div>
                     </div>
@@ -263,29 +263,25 @@
                             </thead>
                             <tbody class="text-center">
                                 @php $no = 1; @endphp
-                                @foreach($teachers as $viw_teachers)
+                                
                                 <tr class="text-center">
                                     <td>{{ $no }}</td>
                                     <td>
-                                        @empty($viw_teachers->photo_teachers)
-                                        <img src="{{ asset ('admin/assets/img/teachers/not-profile.png') }}" alt="User Image" class="rounded-circle" width="15%" style="width: 50px;">
-                                        @else
-                                        <img src="{{ asset ('admin/assets/img/teachers/') }}/{{$viw_teachers->photo_teachers}}" alt="User Image" class="rounded-circle" width="15%" style="width: 40px;">
-                                        @endempty
+                                        
                                     </td>
-                                    <td>{{ $viw_teachers->name_teachers }}</td>
-                                    <td>{{ $viw_teachers->gender_teachers }}</td>
-                                    <td>{{ $viw_teachers->birthday_teachers }}</td>
-                                    <td>{{ $viw_teachers->telp_teachers }}</td>
-                                    <td>{{ $viw_teachers->email_teachers }}</td>
-                                    <td>{{ $viw_teachers->address_teachers }}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     @if(Auth::user()->role == 'Admin')
-                                    <form method="POST" action="{{ route('teacher.destroy', $viw_teachers->id) }}">
+                                    <form method="POST" action="">
                                         @csrf
                                         @method('DELETE')
                                         <td>
                                             <div class="actions text-center">
-                                                <a href="{{ route('teacher.edit', $viw_teachers->id) }}" class="btn btn-sm bg-danger-light">
+                                                <a href="" class="btn btn-sm bg-danger-light">
                                                     <i class="feather-edit"></i>
                                                 </a>
                                                 <button class="btn btn-sm bg-danger-light">
@@ -298,7 +294,7 @@
                                 </tr>
                             </tbody>
                             @php $no++; @endphp
-                            @endforeach
+                            
                         </table>
                     </div>
                 </div>

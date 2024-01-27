@@ -24,7 +24,7 @@
                     <span>University Students</span>
                 </li>
                 <li class="">
-                    <a href="#"><i class="fas fa-graduation-cap"></i> <span>Students</span></a>
+                    <a href="{{ route('student.index') }}"><i class="fas fa-graduation-cap"></i> <span>Students</span></a>
                 </li>
                 @endif
                 @if(Auth::user()->role == 'Teachers' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
