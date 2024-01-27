@@ -285,7 +285,7 @@
                                         @method('DELETE')
                                         <td>
                                             <div class="actions text-center">
-                                                <a href="" class="btn btn-sm bg-danger-light">
+                                                <a href="{{ route('student.edit', $stud->id) }}" class="btn btn-sm bg-danger-light">
                                                     <i class="feather-edit"></i>
                                                 </a>
                                                 <button class="btn btn-sm bg-danger-light">

@@ -47,6 +47,7 @@ Route::get('tablelibrary', [App\Http\Controllers\LibraryController::class, 'tabl
 // Route GET ( 'Edit, Delete' )
 Route::get('teacher/{id}', [App\Http\Controllers\TeachersControllers::class, 'edit'])->name('teacher.edit')->middleware('auth');
 Route::get('library/{id}', [App\Http\Controllers\LibraryController::class, 'edit'])->name('library.edit')->middleware('auth');
+Route::get('student/{id}', [App\Http\Controllers\StudentsControllers::class, 'edit'])->name('student.edit')->middleware('auth');
 Route::get('destroy/{id}', [App\Http\Controllers\TeachersControllers::class, 'destroy'])->name('teacher.destroy')->middleware('auth');
 Route::get('destroy/{id}', [App\Http\Controllers\LibraryController::class, 'destroy'])->name('library.destroy')->middleware('auth');
 Route::get('destroy/{id}', [App\Http\Controllers\StudentsControllers::class, 'destroy'])->name('student.destroy')->middleware('auth');
@@ -63,6 +64,7 @@ Route::post('library/store', [App\Http\Controllers\LibraryController::class, 'st
 Route::post('student/store', [App\Http\Controllers\StudentsControllers::class, 'store'])->name('student.store')->middleware('auth');
 Route::put('teacher/{id}/', [App\Http\Controllers\TeachersControllers::class, 'update'])->name('teacher.update')->middleware('auth');
 Route::put('library/{id}/', [App\Http\Controllers\LibraryController::class, 'update'])->name('library.update')->middleware('auth');
+Route::put('student/{id}/', [App\Http\Controllers\StudentsControllers::class, 'update'])->name('student.update')->middleware('auth');
 Route::delete('teacher/{id}/', [App\Http\Controllers\TeachersControllers::class, 'destroy'])->name('teacher.destroy')->middleware('auth');
 Route::delete('library/{id}/', [App\Http\Controllers\LibraryController::class, 'destroy'])->name('library.destroy')->middleware('auth');
 Route::delete('student/{id}/', [App\Http\Controllers\StudentsControllers::class, 'destroy'])->name('student.destroy')->middleware('auth');
