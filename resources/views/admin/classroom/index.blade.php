@@ -90,12 +90,12 @@
             @if(Auth::user()->role == 'Admin')
             <div class="row my-3">
                 <div class="col-md-12 col-lg-5">
-                    <button class="btn btn-small btn-primary"> <i class="fa fa-server" title="classroom"> </i> Classroom </button>
+                    <button class="btn btn-small btn-primary" onclick="tableclassroom();"> <i class="fa fa-server" title="classroom"> </i> Classroom </button>
                     <button class="btn btn-small btn-primary" onclick="createclassrom();"> <i class="fa fa-plus-circle" title="create"> </i> Create Classroom </button>
                 </div>
             </div>
             @endif
-            
+            @foreach($classroom as $class)
             <div class="col-md-6 col-xl-4 col-sm-12 d-flex">
                 <div class="blog grid-blog flex-fill">
                     <div class="blog-image">
@@ -109,28 +109,44 @@
                                     <a href="{{ route('classroom.index') }}">
                                         <img src="{{ asset('admin/assets/img/logo-small.png') }}" alt="Post Author">
                                         <span>
-                                            <span class="post-title"></span>
-                                            <span class="post-date"><i class="far fa-clock"></i>  </span>
+                                            <span class="post-title"> {{ $class->course}} </span>
+                                            <span class="post-title mt-2"><i class="fas fa-calendar-day"> {{ $class->date_start }} - {{ $class->date_end }} </i> </span>
+                                            <span class="post-date mt-3"><i class="far fa-clock mt-3"> {{ $class->clock_start }} </i> </span>
+                                            <span class="post-date mt-3"><i class="far fa-clock mt-3"> {{ $class->clock_end }} </i> </span>
                                         </span>
                                     </a>
                                 </div>
                             </li>
                         </ul>
-                        <h3 class="blog-title"><a></a></h3>
-                        <p></p>
+                        @php
+                        if(now() < $class->date_start){
+                            $status = 'Will Begin';
+                            $backround = 'bg-warning';
+                            }elseif(now()->between($class->date_start, $class->date_end)){
+                            $status = 'Ongoing';
+                            $backround = 'bg-success';
+                            }else{
+                            $status = 'Has ended';
+                            $backround = 'bg-danger';
+                            }
+                            @endphp
+                            <h3 class="blog-title"><a>{{ $class->course }}</a> <span class="badge text-center text-white {{ $backround }} rounded-3 fw-semibold">{{ $status }}</span> </h3>
+                            <p>{{ $class->deksripsi }}</p>
+                            <p><i class="fas fa-chalkboard-teacher"> {{ $class->teachers }} </i> </p>
+                            <p><i class="fas fa-graduation-cap"> {{ $class->students }} </i> </p>
                     </div>
                     @if(Auth::user()->role == 'Admin')
                     <div class="row">
                         <div class="edit-options">
                             <div class="edit-delete-btn">
-                                <a href="" class="text-success"><i class="feather-edit-3 me-1"></i> Edit</a>
+                                <a href="{{ route('classroom.edit', $class->id) }}" class="text-success"><i class="feather-edit-3 me-1"></i> Edit</a>
                             </div>
                         </div>
                     </div>
                     @endif
                 </div>
             </div>
-           
+            @endforeach
         </div>
 
     </div>

@@ -71,6 +71,7 @@ class LibraryController extends Controller
             ]
         );
 
+        /* Connection Table DB */
         try {
             DB::table('table_course')->insert([
                 'course_univesity' => $request->course_univesity,

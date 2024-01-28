@@ -165,3 +165,27 @@ function tablepresenceSTD() {
         }
     })
 }
+
+function tableclassroom() {
+    Swal.fire({
+        title: 'Do you want to add data to become a classroom ? ',
+        icon: 'question',
+        showCancelButton: true,
+        customClass: 'swal-wide',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Table classroom!',
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location = 'tableclassroom';
+        } else {
+            Swal.fire('Go to table page cancelled!', '', 'error');
+        }
+    })
+}
