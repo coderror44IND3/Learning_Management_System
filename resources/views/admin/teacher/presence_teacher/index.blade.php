@@ -161,7 +161,7 @@
                             </div>
                         </div>
                         <div class="col-auto text-end float-end ms-auto download-grp mt-3">
-                            @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi')
+                            @if(Auth::user()->role == 'Admin')
                             <a href="#" class="btn btn-primary"><i class="fas fa-download" title="Downloads" style="font-size: 18px;"></i></a>
                             @endif
                             @if(Auth::user()->role == 'Admin')

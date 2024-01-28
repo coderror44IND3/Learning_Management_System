@@ -1,7 +1,7 @@
 @extends('admin.layouts.index')
 @section('content')
 <div class="page-wrapper">
-    @if(Auth::user()->role == 'Teachers' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
+    @if(Auth::user()->role == 'Teachers' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Students' || Auth::user()->role == 'Prodi')
     <div class="content container-fluid">
         @include('sweetalert::alert')
         <div class="page-header">

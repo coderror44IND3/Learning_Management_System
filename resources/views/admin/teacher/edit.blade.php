@@ -1,7 +1,7 @@
 @extends('admin.layouts.index')
 @section('content')
 <div class="page-wrapper">
-    @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi')
+    @if(Auth::user()->role == 'Admin')
     <div class="content container-fluid">
 
         <div class="page-header">

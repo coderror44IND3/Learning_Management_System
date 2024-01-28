@@ -1,7 +1,7 @@
 @extends('admin.layouts.index')
 @section('content')
 <div class="page-wrapper">
-    @if(Auth::user()->role == 'Teachers' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi')
+    @if(Auth::user()->role == 'Teachers' || Auth::user()->role == 'Admin')
     <div class="content container-fluid">
         @include('sweetalert::alert')
         <div class="page-header">
@@ -237,10 +237,10 @@
                             </div>
                         </div>
                         <div class="col-auto text-end float-end ms-auto download-grp mt-3">
-                            @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi')
+                            @if(Auth::user()->role == 'Admin')
                             <a href="#" class="btn btn-primary"><i class="fas fa-download" title="Downloads" style="font-size: 18px;"></i></a>
                             @endif
-                            @if(Auth::user()->role == 'Teachers' || Auth::user()->role == 'Admin')
+                            @if(Auth::user()->role == 'Admin')
                             <button onclick="createteacher();" class="btn btn-primary"><i class="fa fa-plus-circle" title="Create" style="font-size: 18px;"></i></button>
                             @endif
                         </div>
@@ -258,7 +258,7 @@
                                     <th>Telephone</th>
                                     <th>E-Mail</th>
                                     <th>Address</th>
-                                    @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi')
+                                    @if(Auth::user()->role == 'Admin')
                                     <th>Action</th>
                                     @endif
                                 </tr>
@@ -281,7 +281,7 @@
                                     <td>{{ $viw_teachers->telp_teachers }}</td>
                                     <td>{{ $viw_teachers->email_teachers }}</td>
                                     <td>{{ $viw_teachers->address_teachers }}</td>
-                                    @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi')
+                                    @if(Auth::user()->role == 'Admin')
                                     <form method="POST" action="{{ route('teacher.destroy', $viw_teachers->id) }}">
                                         @csrf
                                         @method('DELETE')

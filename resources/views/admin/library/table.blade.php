@@ -174,7 +174,7 @@
                                     <th>Course</th>
                                     <th>Date</th>
                                     <th>Deksripsi</th>
-                                    @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi')
+                                    @if(Auth::user()->role == 'Admin')
                                     <th>Action</th>
                                     @endif
                                 </tr>

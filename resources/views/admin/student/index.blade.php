@@ -235,13 +235,13 @@
                             </div>
                         </div>
                         <div class="col-auto text-end float-end ms-auto download-grp mt-3">
-                            @if(Auth::user()->role == 'Students' || Auth::user()->role == 'Admin')
+                            @if(Auth::user()->role == 'Admin')
                             <button class="btn btn-small btn-primary" onclick="tablepresenceSTD();"> <i class="fa fa-server" title="library"> </i> Presence Students </button>
                             @endif
                             @if(Auth::user()->role == 'Admin')
                             <a href="#" class="btn btn-primary"><i class="fas fa-download" title="Downloads" style="font-size: 18px;"></i></a>
                             @endif
-                            @if(Auth::user()->role == 'Students' || Auth::user()->role == 'Admin')
+                            @if(Auth::user()->role == 'Admin')
                             <button onclick="createstudents();" class="btn btn-primary"><i class="fa fa-plus-circle" title="Create" style="font-size: 18px;"></i></button>
                             @endif
                         </div>
