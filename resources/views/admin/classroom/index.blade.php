@@ -110,7 +110,7 @@
                                         <img src="{{ asset('admin/assets/img/logo-small.png') }}" alt="Post Author">
                                         <span>
                                             <span class="post-title"> {{ $class->course}} </span>
-                                            <span class="post-title mt-2"><i class="fas fa-calendar-day"> {{ $class->date_start }} - {{ $class->date_end }} </i> </span>
+                                            <span class="post-title mt-2"><i class="fas fa-calendar-day"> {{ $class->date_start }} S/D {{ $class->date_end }} </i> </span>
                                             <span class="post-date mt-3"><i class="far fa-clock mt-3"> {{ $class->clock_start }} </i> </span>
                                             <span class="post-date mt-3"><i class="far fa-clock mt-3"> {{ $class->clock_end }} </i> </span>
                                         </span>
