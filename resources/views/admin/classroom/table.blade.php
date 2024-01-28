@@ -213,22 +213,24 @@
                                         }
                                         @endphp
                                         <td><span class="badge text-center text-white {{$backround}} rounded-3 fw-semibold">{{ $status }}</span></td>
-                                        @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi')
                                         <form method="POST" action="{{ route('classroom.destroy', $classr->id) }}">
                                             @csrf
                                             @method('DELETE')
                                             <td>
                                                 <div class="actions text-center">
+                                                    @if(Auth::user()->role == 'Prodi' || Auth::user()->role == 'Admin')
                                                     <a href="{{ route('classroom.edit', $classr->id) }}" class="btn btn-sm bg-danger-light">
                                                         <i class="feather-edit"></i>
                                                     </a>
+                                                    @endif
+                                                    @if(Auth::user()->role == 'Admin')
                                                     <button class="btn btn-sm bg-danger-light">
                                                         <i class="feather-trash"></i>
                                                     </button>
+                                                    @endif
                                                 </div>
                                             </td>
                                         </form>
-                                        @endif
                                 </tr>
                             </tbody>
                             @php $no++; @endphp

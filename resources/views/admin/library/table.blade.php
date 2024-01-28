@@ -174,7 +174,7 @@
                                     <th>Course</th>
                                     <th>Date</th>
                                     <th>Deksripsi</th>
-                                    @if(Auth::user()->role == 'Admin')
+                                    @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi')
                                     <th>Action</th>
                                     @endif
                                 </tr>
@@ -187,22 +187,26 @@
                                     <td>{{ $course->course_univesity }}</td>
                                     <td>{{ $course->date_univesity }}</td>
                                     <td>{{ $course->deksripsi_univesity }}</td>
-                                    @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi')
+                                    
                                     <form method="POST" action="{{ route('library.destroy', $course->id) }}">
                                         @csrf
                                         @method('DELETE')
                                         <td>
                                             <div class="actions text-center">
-                                                <a href="{{ route('library.edit', $course->id) }}" class="btn btn-sm bg-danger-light">
+                                                @if(Auth::user()->role == 'Prodi' || Auth::user()->role == 'Admin')
+                                                <a href="{{ route('library.edit', $course->id) }}" class="btn btn-sm bg-danger-light text-center">
                                                     <i class="feather-edit"></i>
                                                 </a>
+                                                @endif
+                                                @if(Auth::user()->role == 'Admin')
                                                 <button class="btn btn-sm bg-danger-light">
                                                     <i class="feather-trash"></i>
                                                 </button>
+                                                @endif
                                             </div>
                                         </td>
                                     </form>
-                                    @endif
+                                    
                                 </tr>
                             </tbody>
                             @php $no++; @endphp

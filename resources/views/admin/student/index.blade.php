@@ -235,7 +235,7 @@
                             </div>
                         </div>
                         <div class="col-auto text-end float-end ms-auto download-grp mt-3">
-                            @if(Auth::user()->role == 'Admin')
+                            @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
                             <button class="btn btn-small btn-primary" onclick="tablepresenceSTD();"> <i class="fa fa-server" title="library"> </i> Presence Students </button>
                             @endif
                             @if(Auth::user()->role == 'Admin')

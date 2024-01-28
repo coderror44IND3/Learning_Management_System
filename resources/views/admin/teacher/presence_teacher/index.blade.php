@@ -109,11 +109,13 @@
                         </div>
                     </div>
                     <hr>
+                    @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers')
                     <div id="" class="">
                         <a class="list-group-item list-group-item-action" href="{{ route('teacher.index') }}">Teachers</a>
                         <a class="list-group-item list-group-item-action active">Presence Teachers</a>
                         <a class="list-group-item list-group-item-action" href="#list-item-4">Presence Students</a>
                     </div>
+                    @endif
                 </div>
 
             </div>
