@@ -1,7 +1,7 @@
 @extends('admin.layouts.index')
 @section('content')
 <div class="page-wrapper">
-    @if(Auth::user()->role == 'Teachers' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
+    @if(Auth::user()->role == 'Teachers' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Students' || Auth::user()->role == 'Prodi')
     <div class="content container-fluid">
         @include('sweetalert::alert')
         <div class="page-header">
@@ -87,7 +87,7 @@
         </div>
 
         <div class="row">
-            @if(Auth::user()->role == 'Admin')
+            @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi')
             <div class="row my-3">
                 <div class="col-md-12 col-lg-5">
                     <button class="btn btn-small btn-primary" onclick="tableclassroom();"> <i class="fa fa-server" title="classroom"> </i> Classroom </button>
@@ -110,7 +110,7 @@
                                         <img src="{{ asset('admin/assets/img/logo-small.png') }}" alt="Post Author">
                                         <span>
                                             <span class="post-title"> {{ $class->course}} </span>
-                                            <span class="post-title mt-2"><i class="fas fa-calendar-day"> {{ $class->date_start }} S/D {{ $class->date_end }} </i> </span>
+                                            <span class="post-title mt-2"><i class="fas fa-calendar-day"> {{ $class->date_start }} - {{ $class->date_end }} </i> </span>
                                             <span class="post-date mt-3"><i class="far fa-clock mt-3"> {{ $class->clock_start }} </i> </span>
                                             <span class="post-date mt-3"><i class="far fa-clock mt-3"> {{ $class->clock_end }} </i> </span>
                                         </span>
@@ -135,7 +135,7 @@
                             <p><i class="fas fa-chalkboard-teacher"> {{ $class->teachers }} </i> </p>
                             <p><i class="fas fa-graduation-cap"> {{ $class->students }} </i> </p>
                     </div>
-                    @if(Auth::user()->role == 'Admin')
+                    @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi')
                     <div class="row">
                         <div class="edit-options">
                             <div class="edit-delete-btn">

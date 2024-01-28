@@ -93,7 +93,7 @@
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col-6">
-                                <h5 class="card-title judul-detail">List Teachers</h5>
+                                <h5 class="card-title judul-detail">List Presence</h5>
                             </div>
                             <div class="col-6">
                                 <ul class="chart-list-out">
@@ -161,10 +161,10 @@
                             </div>
                         </div>
                         <div class="col-auto text-end float-end ms-auto download-grp mt-3">
-                            @if(Auth::user()->role == 'Admin')
+                            @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi')
                             <a href="#" class="btn btn-primary"><i class="fas fa-download" title="Downloads" style="font-size: 18px;"></i></a>
                             @endif
-                            @if(Auth::user()->role == 'Teachers' || Auth::user()->role == 'Admin')
+                            @if(Auth::user()->role == 'Admin')
                             <button onclick="createpresenceT();" class="btn btn-primary"><i class="fa fa-plus-circle" title="Create" style="font-size: 18px;"></i></button>
                             @endif
                         </div>
@@ -188,7 +188,7 @@
                             </thead>
                             <tbody class="text-center">
                                 @php $no = 1; @endphp
-                                @foreach($presence_teachers as $presence)
+                                @foreach($presence_teacher as $presence)
                                 <tr class="text-center">
                                     <td>{{ $no }}</td>
                                     <td>{{ $presence->offline }}</td>

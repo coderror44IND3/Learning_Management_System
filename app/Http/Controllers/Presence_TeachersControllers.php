@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Presence_Teachers;
 use App\Models\Classroom;
 use App\Models\Teachers;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,13 +17,12 @@ class Presence_TeachersControllers extends Controller
      */
     public function index()
     {
-        $presence_teachers = DB::table('table_presence_teachers')
+        $presence_teacher = DB::table('table_presence_teachers')
             ->join('table_teachers', 'table_teachers.id', '=', 'table_presence_teachers.table_teachers_id')
             ->join('table_classroom', 'table_classroom.id', '=', 'table_presence_teachers.table_classroom_id')
             ->select('table_presence_teachers.*', 'table_teachers.name_teachers as teachers', 'table_classroom.offline_class as offline', 'table_classroom.online_class as online')
             ->get();
-
-        return view('admin.teacher.presence_teacher.index', compact('presence_teachers'));
+        return view('admin.teacher.presence_teacher.index', compact('presence_teacher'));
     }
 
     public function searchpresenceT(Request $request)
@@ -32,10 +30,10 @@ class Presence_TeachersControllers extends Controller
         $start_search = $request->start_search;
         $end_search = $request->end_search;
 
-        $presence_teachers = Presence_Teachers::whereDate('created_at', '>=', $start_search)
+        $presence_teacher = Presence_Teachers::whereDate('created_at', '>=', $start_search)
             ->whereDate('created_at', '<=', $end_search)
             ->get();
-        return view('admin.teacher.presence_teacher.index', compact('presence_teachers'));
+        return view('admin.teacher.presence_teacher.index', compact('presence_teacher'));
     }
 
     /**
@@ -45,11 +43,10 @@ class Presence_TeachersControllers extends Controller
      */
     public function create()
     {
-        $presence_teachers = Presence_Teachers::all();
-        $classroom_all = Classroom::all();
-        $teachers_all = Teachers::all();
-
-        return view('admin.teacher.presence_teacher.create', compact('presence_teachers', 'classroom_all', 'teachers_all'));
+        $presence_teacher = Presence_Teachers::all();
+        $classroom = Classroom::all();
+        $teachers = Teachers::all();
+        return view('admin.teacher.presence_teacher.create', compact('presence_teacher', 'classroom', 'teachers'));
     }
 
     /**
@@ -60,7 +57,39 @@ class Presence_TeachersControllers extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+        [
+            'date_presence' => 'required',
+            'clock_presence' => 'required',
+            'status_presence' => 'required',
+            'table_teachers_id' => 'required',
+            'table_classroom_id' => 'required',
+        ],
+        
+        /* Message Error Presence Teachers */
+        [
+            'date_presence.required' => 'Please Input Date Presence Teachers',
+            'clock_presence.required' => 'Please Input Clock Presence Teachers',
+            'status_presence.required' => 'Please Input Status Presence Teachers',
+            'table_teachers_id.required' => 'Please Input ID Teachers',
+            'table_classroom_id.required' => 'Please Input ID Classroom',
+        ]);
+
+        /* Connection Table DB */
+        try {
+            DB::table('table_presence_teachers')->insert([
+                'date_presence' => $request->date_presence,
+                'clock_presence' => $request->clock_presence,
+                'status_presence' => $request->status_presence,
+                'table_teachers_id' => $request->table_teachers_id,
+                'table_classroom_id' => $request->table_classroom_id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+            return redirect()->route('presence_teacher.create')->with('success', 'New Presence Teachers Data Has Been Successfully Saved');
+        } catch (\Exception $allerStore) {
+            return redirect()->route('presence_teacher.create')->with('error', 'New Presence Teachers Data Has Been Error Saved');
+        }
     }
 
     /**

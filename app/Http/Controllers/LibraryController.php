@@ -129,9 +129,9 @@ class LibraryController extends Controller
             /* Message Error Library */
             [
                 'course_univesity.max' => 'Please Input Course Max 45',
-                'course_univesity.required' => 'Please Input Course Valid',
-                'date_univesity.required' => 'Please Input Date Valid',
-                'deksripsi_univesity.required' => 'Please Input Deksripsi Course Valid',
+                'course_univesity.required' => 'Please Input Course',
+                'date_univesity.required' => 'Please Input Date',
+                'deksripsi_univesity.required' => 'Please Input Deksripsi Course',
             ]
         );
 

@@ -13,7 +13,8 @@ class Presence_Teachers extends Model
     protected $table = 'table_presence_teachers';
     protected $filtable = [
         'date_presence',
-        'status_presece',
+        'clock_presence',
+        'status_presence',
         'table_teachers_id',
         'table_classroom_id',
         'created_at',

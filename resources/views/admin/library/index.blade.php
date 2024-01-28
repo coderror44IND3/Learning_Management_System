@@ -87,7 +87,7 @@
         </div>
 
         <div class="row">
-            @if(Auth::user()->role == 'Admin')
+            @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi')
             <div class="row my-3">
                 <div class="col-md-12 col-lg-5">
                     <button class="btn btn-small btn-primary" onclick="tablelibraryy();"> <i class="fa fa-server" title="library"> </i> Library </button>
@@ -119,7 +119,7 @@
                         <h3 class="blog-title"><a>{{ $r->course_univesity }}</a></h3>
                         <p>{{ $r->deksripsi_univesity }}</p>
                     </div>
-                    @if(Auth::user()->role == 'Admin')
+                    @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi')
                     <div class="row">
                         <div class="edit-options">
                             <div class="edit-delete-btn">

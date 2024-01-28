@@ -3,9 +3,7 @@
 <div class="page-wrapper">
     @if(Auth::user()->role == 'Teachers' || Auth::user()->role == 'Admin')
     <div class="content container-fluid">
-
         @include('sweetalert::alert')
-
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-12">

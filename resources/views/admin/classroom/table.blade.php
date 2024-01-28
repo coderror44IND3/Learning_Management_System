@@ -1,7 +1,7 @@
 @extends('admin.layouts.index')
 @section('content')
 <div class="page-wrapper">
-    @if(Auth::user()->role == 'Admin')
+    @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi')
     <div class="content container-fluid">
         @include('sweetalert::alert')
         <div class="page-header">
@@ -160,7 +160,7 @@
                             </div>
                         </div>
                         <div class="col-auto text-end float-end ms-auto download-grp mt-3">
-                            @if(Auth::user()->role == 'Admin')
+                            @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi')
                             <a href="#" class="btn btn-primary"><i class="fas fa-download" title="Downloads" style="font-size: 18px;"></i></a>
                             @endif
                         </div>
@@ -181,7 +181,7 @@
                                     <th>Clock Start</th>
                                     <th>Clock End</th>
                                     <th>Status</th>
-                                    @if(Auth::user()->role == 'Admin')
+                                    @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi')
                                     <th>Action</th>
                                     @endif
                                 </tr>
@@ -211,9 +211,9 @@
                                         $status = 'Has ended';
                                         $backround = 'bg-danger';
                                         }
-                                    @endphp
+                                        @endphp
                                         <td><span class="badge text-center text-white {{$backround}} rounded-3 fw-semibold">{{ $status }}</span></td>
-                                        @if(Auth::user()->role == 'Admin')
+                                        @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi')
                                         <form method="POST" action="{{ route('classroom.destroy', $classr->id) }}">
                                             @csrf
                                             @method('DELETE')
