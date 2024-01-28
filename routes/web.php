@@ -62,6 +62,7 @@ Route::get('classroom/{id}', [App\Http\Controllers\ClassroomControllers::class, 
 Route::get('destroy/{id}', [App\Http\Controllers\TeachersControllers::class, 'destroy'])->name('teacher.destroy')->middleware('auth');
 Route::get('destroy/{id}', [App\Http\Controllers\LibraryController::class, 'destroy'])->name('library.destroy')->middleware('auth');
 Route::get('destroy/{id}', [App\Http\Controllers\StudentsControllers::class, 'destroy'])->name('student.destroy')->middleware('auth');
+Route::get('destroy/{id}', [App\Http\Controllers\ClassroomControllers::class, 'destroy'])->name('classroom.destroy')->middleware('auth');
 
 // Route POST ( 'Search' )
 Route::post('searchteacher/searchteacher', [App\Http\Controllers\TeachersControllers::class, 'searchteacher'])->name('teacher.searchteacher')->middleware('auth');

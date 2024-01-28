@@ -216,6 +216,9 @@ class ClassroomControllers extends Controller
      */
     public function destroy($id)
     {
-        //
+        $classroom_delete = Classroom::find($id);
+        Classroom::where('id', $id)->delete();
+        toast('Success Delete Data Classroom', 'success');
+        return redirect()->back();
     }
 }
