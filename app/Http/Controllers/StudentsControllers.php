@@ -225,8 +225,8 @@ class StudentsControllers extends Controller
      */
     public function destroy($id)
     {
-        $detail_students = Students::find($id);
-        if(!empty($detail_students->photo_students))unlink('admin/assets/img/students/' . $detail_students->photo_students);
+        $delete_students = Students::find($id);
+        if(!empty($delete_students->photo_students))unlink('admin/assets/img/students/' . $delete_students->photo_students);
 
         Students::where('id', $id)->delete();
         toast('Success Delete Data Students', 'success');

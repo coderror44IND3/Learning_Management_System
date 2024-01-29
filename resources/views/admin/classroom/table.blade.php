@@ -212,7 +212,7 @@
                                         $backround = 'bg-danger';
                                         }
                                         @endphp
-                                        <td><span class="badge text-center text-white {{$backround}} rounded-3 fw-semibold">{{ $status }}</span></td>
+                                        <td><span class="label-style badge text-center text-white {{ $backround }} rounded-3 fw-semibold"> {{ $status }} </span></td>
                                         <form method="POST" action="{{ route('classroom.destroy', $classr->id) }}">
                                             @csrf
                                             @method('DELETE')

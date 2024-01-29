@@ -130,8 +130,8 @@
                             $backround = 'bg-danger';
                             }
                             @endphp
-                            <h3 class="blog-title"><a>{{ $class->course }}</a> <span class="badge text-center text-white {{ $backround }} rounded-3 fw-semibold">{{ $status }}</span> </h3>
-                            <p>{{ $class->deksripsi }}</p>
+                            <h3 class="blog-title"><a> {{ $class->course }} </a> <span class="label-style badge text-center text-white {{ $backround }} rounded-3 fw-semibold"> {{ $status }} </span> </h3>
+                            <p> {{ $class->deksripsi }} </p>
                             <p><i class="fas fa-chalkboard-teacher"> {{ $class->teachers }} </i> </p>
                             <p><i class="fas fa-graduation-cap"> {{ $class->students }} </i> </p>
                     </div>

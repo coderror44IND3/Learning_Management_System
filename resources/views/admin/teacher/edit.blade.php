@@ -141,14 +141,14 @@
                     <hr>
                     <div class="card">
                         <div class="card-body">
-                            <form method="POST" action="{{ route('teacher.update', $detail_teachersE->id) }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('teacher.update', $edit_teachers->id) }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="row mt-3">
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>photo <span class="login-danger">*</span></label>
-                                            <input type="file" name="photo_teachers" value="{{ $detail_teachersE->photo_teachers }}" class="form-control @error('photo_teachers') is-invalid @else is-valid @enderror">
+                                            <input type="file" name="photo_teachers" value="{{ $edit_teachers->photo_teachers }}" class="form-control @error('photo_teachers') is-invalid @else is-valid @enderror">
 
                                             <!-- Message Error -->
                                             @error('photo_teachers')
@@ -162,7 +162,7 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Name <span class="login-danger">*</span></label>
-                                            <input type="text" name="name_teachers" value="{{ $detail_teachersE->name_teachers }}" class="form-control @error('name_teachers') is-invalid @else is-valid @enderror" placeholder="Full Name">
+                                            <input type="text" name="name_teachers" value="{{ $edit_teachers->name_teachers }}" class="form-control @error('name_teachers') is-invalid @else is-valid @enderror" placeholder="Full Name">
 
                                             <!-- Message Error -->
                                             @error('name_teachers')
@@ -176,7 +176,7 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Telephone <span class="login-danger">*</span></label>
-                                            <input type="text" name="telp_teachers" value="{{ $detail_teachersE->telp_teachers }}" class="form-control @error('telp_teachers') is-invalid @else is-valid @enderror" placeholder="Telephone">
+                                            <input type="text" name="telp_teachers" value="{{ $edit_teachers->telp_teachers }}" class="form-control @error('telp_teachers') is-invalid @else is-valid @enderror" placeholder="Telephone">
 
                                             <!-- Message Error -->
                                             @error('telp_teachers')
@@ -190,7 +190,7 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>E-Mail <span class="login-danger">*</span></label>
-                                            <input type="text" name="email_teachers" value="{{ $detail_teachersE->email_teachers }}" class="form-control @error('email_teachers') is-invalid @else is-valid @enderror" placeholder="E-Mail">
+                                            <input type="text" name="email_teachers" value="{{ $edit_teachers->email_teachers }}" class="form-control @error('email_teachers') is-invalid @else is-valid @enderror" placeholder="E-Mail">
 
                                             <!-- Message Error -->
                                             @error('email_teachers')
@@ -204,8 +204,8 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Gender <span class="login-danger">*</span></label>
-                                            <input type="radio" class="mt-3 @error('gender_teachers') is-invalid @else is-valid @enderror" value="Male" name="gender_teachers" {{ $detail_teachersE->gender_teachers == "Male"?'checked': ''}} id="gender_teachers" name="gender_teachers"> Male
-                                            <input type="radio" class="@error('gender_teachers') is-invalid @else is-valid @enderror" value="Female" name="gender_teachers" {{ $detail_teachersE->gender_teachers == "Female"?'checked': ''}} id="gender_teachers" name="gender_teachers"> Female
+                                            <input type="radio" class="mt-3 @error('gender_teachers') is-invalid @else is-valid @enderror" value="Male" name="gender_teachers" {{ $edit_teachers->gender_teachers == "Male"?'checked': ''}} id="gender_teachers" name="gender_teachers"> Male
+                                            <input type="radio" class="@error('gender_teachers') is-invalid @else is-valid @enderror" value="Female" name="gender_teachers" {{ $edit_teachers->gender_teachers == "Female"?'checked': ''}} id="gender_teachers" name="gender_teachers"> Female
 
                                             <!-- Message Error -->
                                             @error('gender_teachers')
@@ -219,7 +219,7 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Date Of Birth <span class="login-danger">*</span></label>
-                                            <input type="date" name="birthday_teachers" value="{{ $detail_teachersE->birthday_teachers }}" class="form-control @error('birthday_teachers') is-invalid @else is-valid @enderror">
+                                            <input type="date" name="birthday_teachers" value="{{ $edit_teachers->birthday_teachers }}" class="form-control @error('birthday_teachers') is-invalid @else is-valid @enderror">
 
                                             <!-- Message Error -->
                                             @error('birthday_teachers')
@@ -236,7 +236,7 @@
                                             <select name="users_id" class="form-control select @error('users_id') is-invalid @else is-valid @enderror">
                                                 <option>--- Select Users ID ---</option>
                                                 @foreach($users as $users_ac)
-                                                @php $opti_users = ($users_ac->id == $detail_teachersE->users_id) ? 'selected' : ''; @endphp
+                                                @php $opti_users = ($users_ac->id == $edit_teachers->users_id) ? 'selected' : ''; @endphp
                                                 <option class="optins" value="{{ $users_ac->id }}" {{ $opti_users }}>{{ $users_ac->name }}</option>
                                                 @endforeach
                                             </select>
@@ -253,7 +253,7 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Address <span class="login-danger">*</span></label>
-                                            <textarea name="address_teachers" class="form-control @error('address_teachers') is-invalid @else is-valid @enderror" id="address_teachers">{{ $detail_teachersE->address_teachers }}</textarea>
+                                            <textarea name="address_teachers" class="form-control @error('address_teachers') is-invalid @else is-valid @enderror" id="address_teachers">{{ $edit_teachers->address_teachers }}</textarea>
                                         </div>
 
                                         <!-- Message Error -->

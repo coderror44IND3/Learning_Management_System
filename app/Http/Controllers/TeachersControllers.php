@@ -135,9 +135,9 @@ class TeachersControllers extends Controller
      */
     public function edit($id)
     {
-        $detail_teachersE = Teachers::find($id);
+        $edit_teachers = Teachers::find($id);
         $users = User::all();
-        return view('admin.teacher.edit', compact('detail_teachersE', 'users'));
+        return view('admin.teacher.edit', compact('edit_teachers', 'users'));
     }
 
     /**
@@ -224,8 +224,8 @@ class TeachersControllers extends Controller
      */
     public function destroy($id)
     {
-        $detail_delete = Teachers::find($id);
-        if(!empty($detail_delete->photo_teachers))unlink('admin/assets/img/teachers/' . $detail_delete->photo_teachers);
+        $delete_teachers = Teachers::find($id);
+        if(!empty($delete_teachers->photo_teachers))unlink('admin/assets/img/teachers/' . $delete_teachers->photo_teachers);
 
         Teachers::where('id', $id)->delete();
         toast('Success Delete Data Teachers', 'success');

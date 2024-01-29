@@ -218,20 +218,24 @@
                                         }
                                         @endphp
 
-                                        <label class="btn btn-sm {{ $btn_color }}">{{$presence->status_presence}}</label>
+                                        <span class="btn btn-sm label-style text-center text-white {{ $btn_color }}"> {{ $presence->status_presence }} </span>
 
                                     </td>
                                     @if(Auth::user()->role == 'Admin')
-                                    <td>
-                                        <div class="actions text-center">
-                                            <a href="" class="btn btn-sm bg-danger-light">
-                                                <i class="feather-edit"></i>
-                                            </a>
-                                            <a href="edit-teacher.html" class="btn btn-sm bg-danger-light">
-                                                <i class="feather-trash"></i>
-                                            </a>
-                                        </div>
-                                    </td>
+                                    <form method="POST" action="{{ route('presence_teacher.destroy', $presence->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <td>
+                                            <div class="actions text-center">
+                                                <a href="{{ route('presence_teacher.edit', $presence->id) }}" class="btn btn-sm bg-danger-light">
+                                                    <i class="feather-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm bg-danger-light">
+                                                    <i class="feather-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </form>
                                     @endif
                                 </tr>
                             </tbody>
