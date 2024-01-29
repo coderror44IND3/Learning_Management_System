@@ -3,14 +3,13 @@
 <div class="page-wrapper">
     @if(Auth::user()->role == 'Admin')
     <div class="content container-fluid">
-
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="page-sub-header">
 
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('/teachers') }}">Detail Teachers</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('teacher.index') }}">Teachers</a></li>
                             <li class="breadcrumb-item active">
                                 @if(empty(Auth::user()->role))
                                 @else

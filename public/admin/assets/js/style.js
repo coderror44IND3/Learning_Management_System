@@ -1,3 +1,4 @@
+// Function Create SweetAlert
 function createteacher() {
     Swal.fire({
         title: 'Do you want to add data to become a teacher ? ',
@@ -24,7 +25,7 @@ function createteacher() {
 
 function createpresenceT() {
     Swal.fire({
-        title: 'Do you want to add teacher attendance data ? ',
+        title: 'Do you want to add data to become a presence teachers ? ',
         icon: 'question',
         showCancelButton: true,
         customClass: 'swal-wide',
@@ -41,7 +42,7 @@ function createpresenceT() {
         if (result.isConfirmed) {
             window.location = 'upcreate2';
         } else {
-            Swal.fire('Addition of attendance data cancelled!', '', 'error');
+            Swal.fire('Addition of presence data cancelled!', '', 'error');
         }
     })
 }
@@ -118,6 +119,31 @@ function createclassrom() {
     })
 }
 
+function createpresences() {
+    Swal.fire({
+        title: 'Do you want to add data to become a presence students ? ',
+        icon: 'question',
+        showCancelButton: true,
+        customClass: 'swal-wide',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Create!',
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location = 'upcreate6';
+        } else {
+            Swal.fire('Addition of presence data cancelled!', '', 'error');
+        }
+    })
+}
+
+// Function Table SweetAlert
 function tablelibraryy() {
     Swal.fire({
         title: 'Do you want to add data to become a table library ? ',

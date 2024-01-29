@@ -10,7 +10,7 @@
                     <div class="page-sub-header">
 
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('/')}}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
                                 @if(empty(Auth::user()->role))
                                 @else
@@ -113,7 +113,7 @@
                     <div id="" class="">
                         <a class="list-group-item list-group-item-action" href="{{ route('teacher.index') }}">Teachers</a>
                         <a class="list-group-item list-group-item-action active">Presence Teachers</a>
-                        <a class="list-group-item list-group-item-action" href="#list-item-4">Presence Students</a>
+                        <a class="list-group-item list-group-item-action" href="{{ route('presence_student.index') }}">Presence Students</a>
                     </div>
                     @endif
                 </div>

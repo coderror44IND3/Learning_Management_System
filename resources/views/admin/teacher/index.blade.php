@@ -10,7 +10,7 @@
                     <div class="page-sub-header">
 
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('/')}}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">
                                 @if(empty(Auth::user()->role))
                                 @else

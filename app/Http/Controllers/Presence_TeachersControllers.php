@@ -18,10 +18,10 @@ class Presence_TeachersControllers extends Controller
     public function index()
     {
         $presence_teacher = DB::table('table_presence_teachers')
-            ->join('table_teachers', 'table_teachers.id', '=', 'table_presence_teachers.table_teachers_id')
-            ->join('table_classroom', 'table_classroom.id', '=', 'table_presence_teachers.table_classroom_id')
-            ->select('table_presence_teachers.*', 'table_teachers.name_teachers as teachers', 'table_classroom.offline_class as offline', 'table_classroom.online_class as online')
-            ->get();
+                            ->join('table_teachers', 'table_teachers.id', '=', 'table_presence_teachers.table_teachers_id')
+                            ->join('table_classroom', 'table_classroom.id', '=', 'table_presence_teachers.table_classroom_id')
+                            ->select('table_presence_teachers.*', 'table_teachers.name_teachers as teachers', 'table_classroom.offline_class as offline', 'table_classroom.online_class as online')
+                            ->get();
         return view('admin.teacher.presence_teacher.index', compact('presence_teacher'));
     }
 
