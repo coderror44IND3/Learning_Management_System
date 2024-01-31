@@ -143,6 +143,30 @@ function createpresences() {
     })
 }
 
+function createassigments() {
+    Swal.fire({
+        title: 'Do you want to add data to become a assigments ? ',
+        icon: 'question',
+        showCancelButton: true,
+        customClass: 'swal-wide',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Create!',
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location = 'upcreate7';
+        } else {
+            Swal.fire('Addition of assigments data cancelled!', '', 'error');
+        }
+    })
+}
+
 // Function Table SweetAlert
 function tablelibraryy() {
     Swal.fire({
@@ -210,6 +234,30 @@ function tableclassroom() {
     }).then((result) => {
         if (result.isConfirmed) {
             window.location = 'tableclassroom';
+        } else {
+            Swal.fire('Go to table page cancelled!', '', 'error');
+        }
+    })
+}
+
+function tableassigme() {
+    Swal.fire({
+        title: 'Do you want to add data to become a assigment ? ',
+        icon: 'question',
+        showCancelButton: true,
+        customClass: 'swal-wide',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Table Assigment Students!',
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location = 'tableassigme';
         } else {
             Swal.fire('Go to table page cancelled!', '', 'error');
         }

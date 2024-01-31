@@ -22,6 +22,10 @@ Route::get('presence_teacher', [App\Http\Controllers\Presence_TeachersController
 Route::get('student', [App\Http\Controllers\StudentsControllers::class, 'index'])->name('student.index')->middleware('auth');
 Route::get('presence_student', [App\Http\Controllers\Presence_StudentsControllers::class, 'index'])->name('presence_student.index')->middleware('auth');
 
+// Route GET ( 'Assigments' )
+Route::get('assigment', [\App\Http\Controllers\AssigmentControllers::class, 'index'])->name('assigment.index')->middleware('auth');
+Route::get('tableassigme', [\App\Http\Controllers\AssigmentControllers::class, 'index'])->name('assigment.index')->middleware('auth');
+
 // Route GET ( 'Library', 'Table Library' )
 Route::get('library', [App\Http\Controllers\LibraryController::class, 'index'])->name('library.index')->middleware('auth');
 Route::get('tablelibraryy', [App\Http\Controllers\LibraryController::class, 'tablelibraryy'])->name('library.table')->middleware('auth');
@@ -38,10 +42,11 @@ Route::get('dashboard', [App\Http\Controllers\DashboardController::class, 'index
 
 // Route GET Search
 Route::get('/searchteacher', [App\Http\Controllers\TeachersControllers::class, 'searchteacher'])->middleware('auth');
-Route::get('/searchpresenceT', [App\Http\Controllers\Presence_TeachersControllers::class, 'searchpresenceT'])->middleware('auth');
+Route::get('/searchpresenceteachers', [App\Http\Controllers\Presence_TeachersControllers::class, 'searchpresenceteachers'])->middleware('auth');
 Route::get('/searchlibrary', [App\Http\Controllers\LibraryController::class, 'searchlibrary'])->middleware('auth');
 Route::get('/searchstudents', [App\Http\Controllers\StudentsControllers::class, 'searchstudents'])->middleware('auth'); 
 Route::get('/searchstudentspresence', [App\Http\Controllers\Presence_StudentsControllers::class, 'searchstudentspresence'])->middleware('auth'); 
+Route::get('/searchclassroom', [App\Http\Controllers\ClassroomControllers::class, 'searchclassroom'])->middleware('auth'); 
 
 // Route GET Create ( SweetAlert )
 Route::get('upcreate1', [App\Http\Controllers\TeachersControllers::class, 'create'])->name('teacher.create')->middleware('auth');
@@ -50,6 +55,7 @@ Route::get('upcreate3', [App\Http\Controllers\LibraryController::class, 'create'
 Route::get('upcreate4', [App\Http\Controllers\StudentsControllers::class, 'create'])->name('student.create')->middleware('auth');
 Route::get('upcreate5', [App\Http\Controllers\ClassroomControllers::class, 'create'])->name('classroom.create')->middleware('auth');
 Route::get('upcreate6', [App\Http\Controllers\Presence_StudentsControllers::class, 'create'])->name('presence_student.create')->middleware('auth');
+Route::get('upcreate7', [App\Http\Controllers\AssigmentControllers::class, 'create'])->name('assigment.create')->middleware('auth');
 
 // Route GET Table ( SweetAlert )
 Route::get('tablelibraryy', [App\Http\Controllers\LibraryController::class, 'tablelibraryy'])->name('library.table')->middleware('auth');
@@ -73,10 +79,11 @@ Route::get('destroy/{id}', [App\Http\Controllers\Presence_StudentsControllers::c
 
 // Route POST ( 'Search' )
 Route::post('searchteacher/searchteacher', [App\Http\Controllers\TeachersControllers::class, 'searchteacher'])->name('teacher.searchteacher')->middleware('auth');
-Route::post('searchpresenceT/searchpresenceT', [App\Http\Controllers\Presence_TeachersControllers::class, 'searchpresenceT'])->name('presence_teacher.search')->middleware('auth');
+Route::post('searchpresenceteachers/searchpresenceteachers', [App\Http\Controllers\Presence_TeachersControllers::class, 'searchpresenceteachers'])->name('presence_teacher.searchpresenceteachers')->middleware('auth');
 Route::post('searchlibrary/searchlibrary', [App\Http\Controllers\LibraryController::class, 'searchlibrary'])->name('library.searchlibrary')->middleware('auth');
 Route::post('searchstudents/searchstudents', [App\Http\Controllers\StudentsControllers::class, 'searchstudents'])->name('student.searchstudents')->middleware('auth');
 Route::post('searchclassroom/searchclassroom', [App\Http\Controllers\ClassroomControllers::class, 'searchclassroom'])->name('classroom.searchclassroom')->middleware('auth');
+Route::post('searchstudentspresence/searchstudentspresence', [App\Http\Controllers\Presence_StudentsControllers::class, 'searchstudentspresence'])->name('presence_student.searchstudentspresence')->middleware('auth');
 
 // Route POST, PUT, DELETE ( 'Edit, Created, Delete' )
 Route::post('teacher/store', [App\Http\Controllers\TeachersControllers::class, 'store'])->name('teacher.store')->middleware('auth');
@@ -85,6 +92,7 @@ Route::post('student/store', [App\Http\Controllers\StudentsControllers::class, '
 Route::post('classroom/store', [App\Http\Controllers\ClassroomControllers::class, 'store'])->name('classroom.store')->middleware('auth');
 Route::post('presence_teacher/store', [App\Http\Controllers\Presence_TeachersControllers::class, 'store'])->name('presence_teacher.store')->middleware('auth');
 Route::post('presence_student/store', [App\Http\Controllers\Presence_StudentsControllers::class, 'store'])->name('presence_student.store')->middleware('auth');
+Route::post('assigment/store', [App\Http\Controllers\AssigmentControllers::class, 'store'])->name('assigment.store')->middleware('auth');
 
 Route::put('teacher/{id}/', [App\Http\Controllers\TeachersControllers::class, 'update'])->name('teacher.update')->middleware('auth');
 Route::put('library/{id}/', [App\Http\Controllers\LibraryController::class, 'update'])->name('library.update')->middleware('auth');

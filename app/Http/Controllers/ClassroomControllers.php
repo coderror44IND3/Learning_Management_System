@@ -19,24 +19,22 @@ class ClassroomControllers extends Controller
     public function index()
     {
         $classroom = DB::table('table_classroom')
-            ->join('table_students', 'table_students.id', '=', 'table_classroom.table_students_id')
-            ->join('table_teachers', 'table_teachers.id', '=', 'table_classroom.table_teachers_id')
-            ->join('table_course', 'table_course.id', '=', 'table_classroom.table_course_id')
-            ->select('table_classroom.*', 'table_teachers.name_teachers as teachers', 'table_students.name_students as students', 'table_course.course_univesity as course', 'table_course.deksripsi_univesity as deksripsi')
-            ->get();
-
+                        ->join('table_students', 'table_students.id', '=', 'table_classroom.table_students_id')
+                        ->join('table_teachers', 'table_teachers.id', '=', 'table_classroom.table_teachers_id')
+                        ->join('table_course', 'table_course.id', '=', 'table_classroom.table_course_id')
+                        ->select('table_classroom.*', 'table_teachers.name_teachers as teachers', 'table_students.name_students as students', 'table_course.course_univesity as course', 'table_course.deksripsi_univesity as deksripsi')
+                        ->get();
         return view('admin.classroom.index', compact('classroom'));
     }
 
     public function tableclassroom()
     {
         $classroom = DB::table('table_classroom')
-            ->join('table_students', 'table_students.id', '=', 'table_classroom.table_students_id')
-            ->join('table_teachers', 'table_teachers.id', '=', 'table_classroom.table_teachers_id')
-            ->join('table_course', 'table_course.id', '=', 'table_classroom.table_course_id')
-            ->select('table_classroom.*', 'table_teachers.name_teachers as teachers', 'table_students.name_students as students', 'table_course.course_univesity as course', 'table_course.deksripsi_univesity as deksripsi')
-            ->get();
-
+                        ->join('table_students', 'table_students.id', '=', 'table_classroom.table_students_id')
+                        ->join('table_teachers', 'table_teachers.id', '=', 'table_classroom.table_teachers_id')
+                        ->join('table_course', 'table_course.id', '=', 'table_classroom.table_course_id')
+                        ->select('table_classroom.*', 'table_teachers.name_teachers as teachers', 'table_students.name_students as students', 'table_course.course_univesity as course', 'table_course.deksripsi_univesity as deksripsi')
+                        ->get();
         return view('admin.classroom.table', compact('classroom'));
     }
 
@@ -45,9 +43,14 @@ class ClassroomControllers extends Controller
         $start_search = $request->start_search;
         $end_search = $request->end_search;
 
-        $classroom = Classroom::whereDate('created_at', '>=', $start_search)
-            ->whereDate('created_at', '<=', $end_search)
-            ->get();
+        $classroom = DB::table('table_classroom')
+                        ->join('table_students', 'table_students.id', '=', 'table_classroom.table_students_id')
+                        ->join('table_teachers', 'table_teachers.id', '=', 'table_classroom.table_teachers_id')
+                        ->join('table_course', 'table_course.id', '=', 'table_classroom.table_course_id')
+                        ->select('table_classroom.*', 'table_teachers.name_teachers as teachers', 'table_students.name_students as students', 'table_course.course_univesity as course', 'table_course.deksripsi_univesity as deksripsi')
+                        ->whereDate('table_classroom.created_at', '>=', $start_search)
+                        ->whereDate('table_classroom.created_at', '<=', $end_search)
+                        ->get();
         return view('admin.classroom.table', compact('classroom'));
     }
 

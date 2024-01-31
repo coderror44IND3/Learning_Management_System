@@ -120,7 +120,7 @@
             <div class="col-md-12 col-lg-7">
 
                 <div class="student-group-form">
-                    <form action="/searchlibrary" method="GET">
+                    <form action="/searchclassroom" method="GET">
                         <div class="row">
                             <div class="col-lg-4 col-md-6">
                                 <div class="form-group">

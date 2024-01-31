@@ -111,6 +111,8 @@
                     <hr>
                     <div id="" class="">
                         <a class="list-group-item list-group-item-action active">Students</a>
+                        <a class="list-group-item list-group-item-action" href="{{ route('assigment.index') }}">Assigment</a>
+                        <a class="list-group-item list-group-item-action" href="#">Grade Class</a>
                     </div>
                 </div>
 

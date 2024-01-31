@@ -30,5 +30,6 @@ class Students extends Model
     public function orders(): HasMany
     {
         return $this->hasMany(Classroom::class);
+        return $this->hasMany(Assigment::class);
     }
 }

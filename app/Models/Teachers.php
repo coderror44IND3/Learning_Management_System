@@ -31,5 +31,6 @@ class Teachers extends Model
     public function orders(): HasMany
     {
         return $this->hasMany(Classroom::class);
+        return $this->hasMany(Presence_Teachers::class);
     }
 }

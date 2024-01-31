@@ -194,17 +194,17 @@
                             </thead>
                             <tbody class="text-center">
                                 @php $no = 1; @endphp
-                                @foreach($presence_students as $presence)
+                                @foreach($presence_students as $presences)
                                 <tr class="text-center">
                                     <td>{{ $no }}</td>
-                                    <td>{{ $presence->offline }}</td>
-                                    <td>{{ $presence->online }}</td>
-                                    <td>{{ $presence->students }}</td>
-                                    <td>{{ $presence->date_presence }}</td>
-                                    <td>{{ $presence->clock_presence }}</td>
+                                    <td>{{ $presences->offline }}</td>
+                                    <td>{{ $presences->online }}</td>
+                                    <td>{{ $presences->students }}</td>
+                                    <td>{{ $presences->date_presence }}</td>
+                                    <td>{{ $presences->clock_presence }}</td>
                                     <td>
                                         @php
-                                        $status_Present = $presence->status_presence;
+                                        $status_Present = $presences->status_presence;
                                         $btn_color = '';
 
                                         switch ($status_Present){
@@ -222,16 +222,16 @@
                                         }
                                         @endphp
 
-                                        <span class="btn btn-sm label-style text-center text-white {{ $btn_color }}"> {{ $presence->status_presence }} </span>
+                                        <span class="btn btn-sm label-style text-center text-white {{ $btn_color }}"> {{ $presences->status_presence }} </span>
 
                                     </td>
                                     @if(Auth::user()->role == 'Admin')
-                                    <form method="POST" action="{{ route('presence_student.destroy', $presence->id) }}">
+                                    <form method="POST" action="{{ route('presence_student.destroy', $presences->id) }}">
                                         @csrf
                                         @method('DELETE')
                                         <td>
                                             <div class="actions text-center">
-                                                <a href="{{ route('presence_student.edit', $presence->id) }}" class="btn btn-sm bg-danger-light">
+                                                <a href="{{ route('presence_student.edit', $presences->id) }}" class="btn btn-sm bg-danger-light">
                                                     <i class="feather-edit"></i>
                                                 </a>
                                                 <button class="btn btn-sm bg-danger-light">

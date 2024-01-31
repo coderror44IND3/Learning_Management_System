@@ -31,8 +31,8 @@ class LibraryController extends Controller
         $end_search = $request->end_search;
 
         $library_table = Library::whereDate('created_at', '>=', $start_search)
-            ->whereDate('created_at', '<=', $end_search)
-            ->get();
+                                ->whereDate('created_at', '<=', $end_search)
+                                ->get();
         return view('admin.library.table', compact('library_table'));
     }
 
