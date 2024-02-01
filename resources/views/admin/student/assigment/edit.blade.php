@@ -111,7 +111,7 @@
                     <hr>
                     <div id="" class="">
                         <a class="list-group-item list-group-item-action" href="{{ route('assigment.index') }}">Assigments</a>
-                        <a class="list-group-item list-group-item-action active">Assigments Add</a>
+                        <a class="list-group-item list-group-item-action active">Assigments Edit</a>
                     </div>
                 </div>
 
@@ -122,7 +122,7 @@
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col-6">
-                                <h5 class="card-title judul-detail">Create Assigments</h5>
+                                <h5 class="card-title judul-detail">Edit Assigments</h5>
                             </div>
                             <div class="col-6">
                                 <ul class="chart-list-out">
@@ -140,13 +140,14 @@
                     <hr>
                     <div class="card">
                         <div class="card-body">
-                            <form method="POST" action="{{ route('assigment.store') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('assigment.update', $edit_assigments->id) }}" enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
                                 <div class="row mt-3">
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>File Assigments <span class="login-danger">*</span></label>
-                                            <input type="file" name="files_assigments" value="{{ old('files_assigments') }}" class="form-control @error('files_assigments') is-invalid @else is-valid @enderror">
+                                            <input type="file" name="files_assigments" value="{{ $edit_assigments->files_assigments }}" class="form-control @error('files_assigments') is-invalid @else is-valid @enderror">
 
                                             <!-- Message Error -->
                                             @error('files_assigments')
@@ -160,7 +161,7 @@
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
                                             <label>Date Assigments <span class="login-danger">*</span></label>
-                                            <input type="datetime-local" name="datetime_assigments" value="{{ old('datetime_assigments') }}" class="form-control @error('datetime_assigments') is-invalid @else is-valid @enderror">
+                                            <input type="datetime-local" name="datetime_assigments" value="{{ $edit_assigments->datetime_assigments }}" class="form-control @error('datetime_assigments') is-invalid @else is-valid @enderror">
 
                                             <!-- Message Error -->
                                             @error('datetime_assigments')
@@ -177,8 +178,8 @@
                                             <select name="table_students_id" class="form-control select @error('table_students_id') is-invalid @else is-valid @enderror">
                                                 <option>--- Select Students ID ---</option>
                                                 @foreach($students as $users_ac)
-                                                @php $sel = (old('table_students_id') == $users_ac['id']) ? 'selected' : ''; @endphp
-                                                <option class="optins" value="{{ $users_ac->id }}" {{ $sel }}>{{ $users_ac->name_students }}</option>
+                                                @php $opti_students = ($users_ac->id == $edit_assigments->table_students_id) ? 'selected' : ''; @endphp
+                                                <option class="optins" value="{{ $users_ac->id }}" {{ $opti_students }}>{{ $users_ac->name_students }}</option>
                                                 @endforeach
                                             </select>
 
@@ -193,7 +194,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="" style="float: right;">
-                                            <button type="submit" name="proses" value="simpan" id="simpan" class="btn btn-primary">Create</button>
+                                            <button type="submit" name="proses" value="simpan" id="simpan" class="btn btn-primary">Edit</button>
                                             <a href="{{ route('assigment.index') }}" class="btn btn-primary">Cancel</a>
                                         </div>
                                     </div>

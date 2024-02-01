@@ -69,6 +69,7 @@ Route::get('student/{id}', [App\Http\Controllers\StudentsControllers::class, 'ed
 Route::get('classroom/{id}', [App\Http\Controllers\ClassroomControllers::class, 'edit'])->name('classroom.edit')->middleware('auth');
 Route::get('presence_teacher/{id}', [App\Http\Controllers\Presence_TeachersControllers::class, 'edit'])->name('presence_teacher.edit')->middleware('auth');
 Route::get('presence_student/{id}', [App\Http\Controllers\Presence_StudentsControllers::class, 'edit'])->name('presence_student.edit')->middleware('auth');
+Route::get('assigment/{id}', [App\Http\Controllers\AssigmentControllers::class, 'edit'])->name('assigment.edit')->middleware('auth');
 
 Route::get('destroy/{id}', [App\Http\Controllers\TeachersControllers::class, 'destroy'])->name('teacher.destroy')->middleware('auth');
 Route::get('destroy/{id}', [App\Http\Controllers\LibraryController::class, 'destroy'])->name('library.destroy')->middleware('auth');
@@ -76,6 +77,7 @@ Route::get('destroy/{id}', [App\Http\Controllers\StudentsControllers::class, 'de
 Route::get('destroy/{id}', [App\Http\Controllers\ClassroomControllers::class, 'destroy'])->name('classroom.destroy')->middleware('auth');
 Route::get('destroy/{id}', [App\Http\Controllers\Presence_TeachersControllers::class, 'destroy'])->name('presence_teacher.destroy')->middleware('auth');
 Route::get('destroy/{id}', [App\Http\Controllers\Presence_StudentsControllers::class, 'destroy'])->name('presence_student.destroy')->middleware('auth');
+Route::get('destroy/{id}', [App\Http\Controllers\AssigmentControllers::class, 'destroy'])->name('assigment.destroy')->middleware('auth');
 
 // Route POST ( 'Search' )
 Route::post('searchteacher/searchteacher', [App\Http\Controllers\TeachersControllers::class, 'searchteacher'])->name('teacher.searchteacher')->middleware('auth');
@@ -100,6 +102,7 @@ Route::put('student/{id}/', [App\Http\Controllers\StudentsControllers::class, 'u
 Route::put('classroom/{id}/', [App\Http\Controllers\ClassroomControllers::class, 'update'])->name('classroom.update')->middleware('auth');
 Route::put('presence_teacher/{id}/', [App\Http\Controllers\Presence_TeachersControllers::class, 'update'])->name('presence_teacher.update')->middleware('auth');
 Route::put('presence_student/{id}/', [App\Http\Controllers\Presence_StudentsControllers::class, 'update'])->name('presence_student.update')->middleware('auth');
+Route::put('assigment/{id}/', [App\Http\Controllers\AssigmentControllers::class, 'update'])->name('assigment.update')->middleware('auth');
 
 Route::delete('teacher/{id}/', [App\Http\Controllers\TeachersControllers::class, 'destroy'])->name('teacher.destroy')->middleware('auth');
 Route::delete('library/{id}/', [App\Http\Controllers\LibraryController::class, 'destroy'])->name('library.destroy')->middleware('auth');
@@ -107,5 +110,6 @@ Route::delete('student/{id}/', [App\Http\Controllers\StudentsControllers::class,
 Route::delete('classroom/{id}/', [App\Http\Controllers\ClassroomControllers::class, 'destroy'])->name('classroom.destroy')->middleware('auth');
 Route::delete('presence_teacher/{id}/', [App\Http\Controllers\Presence_TeachersControllers::class, 'destroy'])->name('presence_teacher.destroy')->middleware('auth');
 Route::delete('presence_student/{id}/', [App\Http\Controllers\Presence_StudentsControllers::class, 'destroy'])->name('presence_student.destroy')->middleware('auth');
+Route::delete('assigment/{id}/', [App\Http\Controllers\AssigmentControllers::class, 'destroy'])->name('assigment.destroy')->middleware('auth');
 
 Auth::routes();

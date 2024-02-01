@@ -114,7 +114,7 @@
                         <a class="list-group-item list-group-item-action" href="{{ route('student.index') }}">Students</a>
                         @endif
                         @if(Auth::user()->role == 'Students' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers')
-                        <a class="list-group-item list-group-item-action active">Assigment</a>
+                        <a class="list-group-item list-group-item-action active">Assigments</a>
                         <a class="list-group-item list-group-item-action" href="#">Grade Class</a>
                         @endif
                     </div>
@@ -186,23 +186,23 @@
                             </thead>
                             <tbody class="text-center">
                                 @php $no = 1; @endphp
-                                
+                                @foreach($assigment as $assig_st)
                                 <tr class="text-center">
                                     <td>{{ $no }}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <form method="POST" action="#">
+                                    <td>{{ $assig_st->students }}</td>
+                                    <td>{{ $assig_st->datetime_assigments }}</td>
+                                    <td class="text-center">
+                                        <a target="_blank" class="text-center btn btn-sm btn-success img-fluid" style="color: white;" href="{{ asset('admin/assets/assigment/student/' . $assig_st->files_assigments) }}">{{ $assig_st->files_assigments }}</a>
+                                    </td>
+                                    <form method="POST" action="{{ route('assigment.destroy', $assig_st->id) }}">
                                         @csrf
                                         @method('DELETE')
                                         <td>
                                             <div class="actions text-center">
-                                                @if($nameStudent)
-                                                <a href="#" class="btn btn-sm bg-danger-light">
+                                                @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
+                                                <a href="{{ route('assigment.edit', $assig_st->id) }}" class="btn btn-sm bg-danger-light">
                                                     <i class="feather-edit"></i>
                                                 </a>
-                                                @else
-                                                <p class="text-center comments-not container-fluid">Tidak ada data pengguna yang sesuai.</p>
                                                 @endif
                                                 @if(Auth::user()->role == 'Admin')
                                                 <button class="btn btn-sm bg-danger-light">
@@ -215,7 +215,7 @@
                                 </tr>
                             </tbody>
                             @php $no++; @endphp
-                            
+                            @endforeach
                         </table>
                     </div>
                 </div>

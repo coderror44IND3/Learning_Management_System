@@ -17,15 +17,11 @@ class AssigmentControllers extends Controller
      */
     public function index()
     {
-        $nameStudent = auth()->user()->name || auth()->user()->role == 'Students';
-        $students_users = User::where('name', $nameStudent)->where('isactive', true)->first();
-
         $assigment = DB::table('table_assigments')
             ->join('table_students', 'table_students.id', '=', 'table_assigments.table_students_id')
-            ->where('table_students.name_students', $nameStudent)
             ->select('table_assigments.*', 'table_students.name_students as students')
             ->get();
-        return view('admin.student.assigment.index', compact('assigment', 'nameStudent'));
+        return view('admin.student.assigment.index', compact('assigment'));
     }
 
     /**
@@ -66,7 +62,7 @@ class AssigmentControllers extends Controller
         );
 
         if (!empty($request->files_assigments)) {
-            $fileName = 'file_' . $request->name_students . '.' . $request->files_assigments->extension();
+            $fileName = 'file_' . $request->datetime_assigments . '.' . $request->files_assigments->extension();
             $request->files_assigments->move(public_path('admin/assets/assigment/student'), $fileName);
         } else {
             $fileName = '';
@@ -81,9 +77,9 @@ class AssigmentControllers extends Controller
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
-            return redirect()->route('student.assigment.create')->with('success', 'New Assigments Data Has Been Successfully Saved');
+            return redirect()->route('assigment.create')->with('success', 'New Assigments Data Has Been Successfully Saved');
         } catch (\Exception $allerStore) {
-            return redirect()->route('student.assigment.create')->with('error', 'New Assigments Data Has Been Error Saved');
+            return redirect()->route('assigment.create')->with('error', 'New Assigments Data Has Been Error Saved');
         }
 
     }
@@ -107,7 +103,9 @@ class AssigmentControllers extends Controller
      */
     public function edit($id)
     {
-        //
+        $edit_assigments = Assigment::find($id);
+        $students = Students::all();
+        return view('admin.student.assigment.edit', compact('edit_assigments', 'students'));
     }
 
     /**
@@ -119,7 +117,53 @@ class AssigmentControllers extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate(
+            [
+                'files_assigments' => 'required|file|mimes:pdf,doc,docx,xls,xlsx,txt,csv,xlsm,pptx|min:2|max:990',
+                'datetime_assigments' => 'required',
+                'table_students_id' => 'required',
+            ],
+
+            /* Message Error Assigments */
+            [
+                'files_assigments.max' => 'Input File Max 990',
+                'files_assigments.mimes' => 'Input pdf,doc,docx,xls,xlsx,txt,csv,xlsm,pptx',
+                'files_assigments.file' => 'This File Is Not An File',
+                'datetime_assigments' => 'Please Input Date Time Assigments',
+                'table_students_id' => 'Please Input Name Valid',
+            ]
+        );
+
+        $assigment_update = DB::table('table_assigments')
+            ->select('files_assigments')
+            ->where('id', $id)
+            ->get();
+        foreach ($assigment_update as $updatte) {
+            $assigment_old = $updatte->files_assigments;
+        }
+
+        if (!empty($request->files_assigments)) {
+            if (!empty($assigment_old)) unlink('admin/assets/assigment/student/' . $assigment_old);
+            $fileName = 'file_' . $request->datetime_assigments . '.' . $request->files_assigments->extension();
+            $request->files_assigments->move(public_path('admin/assets/assigment/student'), $fileName);
+        } else {
+            $fileName = $assigment_old;
+        }
+
+        /* Connection Table DB */
+        try {
+            DB::table('table_assigments')->where('id', $id)->update([
+                'files_assigments' => $fileName,
+                'datetime_assigments' => $request->datetime_assigments,
+                'table_students_id' => $request->table_students_id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+            return redirect()->route('assigment.index')->with('success', 'Edit Assigments Data Has Been Successfully Saved');
+        } catch (\Exception $allerStore) {
+            return redirect()->route('assigment.index')->with('error', 'Edit Assigments Data Has Been Error Saved');
+        }
+
     }
 
     /**
@@ -130,6 +174,11 @@ class AssigmentControllers extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete_assigments = Assigment::find($id);
+        if(!empty($delete_assigments->files_assigments))unlink('admin/assets/assigment/student/' . $delete_assigments->files_assigments);
+
+        Assigment::where('id', $id)->delete();
+        toast('Success Delete Data Assigments', 'success');
+        return redirect()->back();
     }
 }
