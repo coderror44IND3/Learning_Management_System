@@ -24,7 +24,8 @@ class ClassroomControllers extends Controller
                         ->join('table_course', 'table_course.id', '=', 'table_classroom.table_course_id')
                         ->select('table_classroom.*', 'table_teachers.name_teachers as teachers', 'table_students.name_students as students', 'table_course.course_univesity as course', 'table_course.deksripsi_univesity as deksripsi')
                         ->get();
-        return view('admin.classroom.index', compact('classroom'));
+        $snap_Token = 'G860866973';
+        return view('admin.classroom.index', compact('classroom', 'snap_Token'));
     }
 
     public function tableclassroom()
@@ -35,7 +36,8 @@ class ClassroomControllers extends Controller
                         ->join('table_course', 'table_course.id', '=', 'table_classroom.table_course_id')
                         ->select('table_classroom.*', 'table_teachers.name_teachers as teachers', 'table_students.name_students as students', 'table_course.course_univesity as course', 'table_course.deksripsi_univesity as deksripsi')
                         ->get();
-        return view('admin.classroom.table', compact('classroom'));
+        $snap_Token = 'G860866973';
+        return view('admin.classroom.table', compact('classroom', 'snap_Token'));
     }
 
     public function searchclassroom(Request $request)
@@ -51,7 +53,8 @@ class ClassroomControllers extends Controller
                         ->whereDate('table_classroom.created_at', '>=', $start_search)
                         ->whereDate('table_classroom.created_at', '<=', $end_search)
                         ->get();
-        return view('admin.classroom.table', compact('classroom'));
+        $snap_Token = 'G860866973';
+        return view('admin.classroom.table', compact('classroom', 'snap_Token'));
     }
 
     /**
@@ -65,7 +68,8 @@ class ClassroomControllers extends Controller
         $teachers = Teachers::all();
         $students = Students::all();
         $library = Library::all();
-        return view('admin.classroom.create', compact('classroom', 'teachers', 'students', 'library'));
+        $snap_Token = 'G860866973';
+        return view('admin.classroom.create', compact('classroom', 'teachers', 'students', 'library', 'snap_Token'));
     }
 
     /**
@@ -149,7 +153,8 @@ class ClassroomControllers extends Controller
         $teachers = Teachers::all();
         $students = Students::all();
         $library = Library::all();
-        return view('admin.classroom.edit', compact('classroom_edit', 'teachers', 'students', 'library'));
+        $snap_Token = 'G860866973';
+        return view('admin.classroom.edit', compact('classroom_edit', 'teachers', 'students', 'library', 'snap_Token'));
     }
 
     /**

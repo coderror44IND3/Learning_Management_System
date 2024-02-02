@@ -167,6 +167,30 @@ function createassigments() {
     })
 }
 
+function createmoney() {
+    Swal.fire({
+        title: 'Do you want to add data to become a money class ? ',
+        icon: 'question',
+        showCancelButton: true,
+        customClass: 'swal-wide',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Create!',
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location = 'upcreate8';
+        } else {
+            Swal.fire('Addition of money class data cancelled!', '', 'error');
+        }
+    })
+}
+
 // Function Table SweetAlert
 function tablelibraryy() {
     Swal.fire({
@@ -258,6 +282,30 @@ function tableassigme() {
     }).then((result) => {
         if (result.isConfirmed) {
             window.location = 'tableassigme';
+        } else {
+            Swal.fire('Go to table page cancelled!', '', 'error');
+        }
+    })
+}
+
+function tablemoney() {
+    Swal.fire({
+        title: 'Do you want to add data to become a money ? ',
+        icon: 'question',
+        showCancelButton: true,
+        customClass: 'swal-wide',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Table Money Class!',
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location = 'tablemoney';
         } else {
             Swal.fire('Go to table page cancelled!', '', 'error');
         }

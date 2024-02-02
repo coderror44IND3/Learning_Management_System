@@ -22,7 +22,8 @@ class Presence_StudentsControllers extends Controller
                                 ->join('table_classroom', 'table_classroom.id', '=', 'table_presence_students.table_classroom_id')
                                 ->select('table_presence_students.*', 'table_students.name_students as students', 'table_classroom.offline_class as offline', 'table_classroom.online_class as online')
                                 ->get();
-        return view('admin.student.presence_student.index', compact('presence_students'));
+        $snap_Token = 'G860866973';
+        return view('admin.student.presence_student.index', compact('presence_students', 'snap_Token'));
     }
 
     public function searchstudentspresence(Request $request)
@@ -37,7 +38,8 @@ class Presence_StudentsControllers extends Controller
                                 ->whereDate('table_presence_students.created_at', '>=', $start_search)
                                 ->whereDate('table_presence_students.created_at', '<=', $end_search)
                                 ->get();
-        return view('admin.student.presence_student.index', compact('presence_students'));
+        $snap_Token = 'G860866973';
+        return view('admin.student.presence_student.index', compact('presence_students', 'snap_Token'));
     }
 
     public function tablepresenceSTD()
@@ -47,7 +49,8 @@ class Presence_StudentsControllers extends Controller
             ->join('table_classroom', 'table_classroom.id', '=', 'table_presence_students.table_classroom_id')
             ->select('table_presence_students.*', 'table_students.name_students as students', 'table_classroom.offline_class as offline', 'table_classroom.online_class as online')
             ->get();
-        return view('admin.student.presence_student.index', compact('presence_students'));
+        $snap_Token = 'G860866973';
+        return view('admin.student.presence_student.index', compact('presence_students', 'snap_Token'));
     }
 
     /**
@@ -60,7 +63,8 @@ class Presence_StudentsControllers extends Controller
         $presence_students = Presence_Students::all();
         $classroom = Classroom::all();
         $students = Students::all();
-        return view('admin.student.presence_student.create', compact('presence_students', 'classroom', 'students'));
+        $snap_Token = 'G860866973';
+        return view('admin.student.presence_student.create', compact('presence_students', 'classroom', 'students', 'snap_Token'));
     }
 
     /**
@@ -129,7 +133,8 @@ class Presence_StudentsControllers extends Controller
         $edit_presence_students = Presence_Students::find($id);
         $classroom = Classroom::all();
         $students = Students::all();
-        return view('admin.student.presence_student.edit', compact('classroom', 'edit_presence_students', 'students'));
+        $snap_Token = 'G860866973';
+        return view('admin.student.presence_student.edit', compact('classroom', 'edit_presence_students', 'students', 'snap_Token'));
     }
 
     /**

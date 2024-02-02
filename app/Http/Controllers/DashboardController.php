@@ -8,6 +8,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard.dashboard');
+        $snap_Token = 'G860866973';
+        return view('admin.dashboard.dashboard', compact('snap_Token'));
     }
 }

@@ -16,13 +16,15 @@ class LibraryController extends Controller
     public function index()
     {
         $library = Library::all();
-        return view('admin.library.index', compact('library'));
+        $snap_Token = 'G860866973';
+        return view('admin.library.index', compact('library', 'snap_Token'));
     }
 
     public function tablelibraryy()
     {
         $library_table = Library::all();
-        return view('admin.library.table', compact('library_table'));
+        $snap_Token = 'G860866973';
+        return view('admin.library.table', compact('library_table', 'snap_Token'));
     }
 
     public function searchlibrary(Request $request)
@@ -33,7 +35,8 @@ class LibraryController extends Controller
         $library_table = Library::whereDate('created_at', '>=', $start_search)
                                 ->whereDate('created_at', '<=', $end_search)
                                 ->get();
-        return view('admin.library.table', compact('library_table'));
+        $snap_Token = 'G860866973';
+        return view('admin.library.table', compact('library_table', 'snap_Token'));
     }
 
     /**
@@ -44,7 +47,8 @@ class LibraryController extends Controller
     public function create()
     {
         $library = Library::all();
-        return view('admin.library.create', compact('library'));
+        $snap_Token = 'G860866973';
+        return view('admin.library.create', compact('library', 'snap_Token'));
     }
 
     /**
@@ -95,7 +99,8 @@ class LibraryController extends Controller
     public function show($id)
     {
         $library_show = Library::find($id);
-        return view('admin.library.index', compact('library_show'));
+        $snap_Token = 'G860866973';
+        return view('admin.library.index', compact('library_show', 'snap_Token'));
     }
 
     /**
@@ -107,7 +112,8 @@ class LibraryController extends Controller
     public function edit($id)
     {
         $library_edit = Library::find($id);
-        return view('admin.library.edit', compact('library_edit'));
+        $snap_Token = 'G860866973';
+        return view('admin.library.edit', compact('library_edit', 'snap_Token'));
     }
 
     /**

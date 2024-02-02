@@ -21,7 +21,8 @@ class AssigmentControllers extends Controller
             ->join('table_students', 'table_students.id', '=', 'table_assigments.table_students_id')
             ->select('table_assigments.*', 'table_students.name_students as students')
             ->get();
-        return view('admin.student.assigment.index', compact('assigment'));
+        $snap_Token = 'G860866973';
+        return view('admin.student.assigment.index', compact('assigment', 'snap_Token'));
     }
 
     /**
@@ -33,7 +34,8 @@ class AssigmentControllers extends Controller
     {
         $assigment = Assigment::all();
         $students = Students::all();
-        return view('admin.student.assigment.create', compact('assigment', 'students'));
+        $snap_Token = 'G860866973';
+        return view('admin.student.assigment.create', compact('assigment', 'students', 'snap_Token'));
     }
 
     /**
@@ -105,7 +107,8 @@ class AssigmentControllers extends Controller
     {
         $edit_assigments = Assigment::find($id);
         $students = Students::all();
-        return view('admin.student.assigment.edit', compact('edit_assigments', 'students'));
+        $snap_Token = 'G860866973';
+        return view('admin.student.assigment.edit', compact('edit_assigments', 'students', 'snap_Token'));
     }
 
     /**

@@ -20,7 +20,8 @@ class TeachersControllers extends Controller
         $teachers_users = User::where('role', $roleTeacher)->where('isactive', true)->first();
 
         $teachers = Teachers::all();
-        return view('admin.teacher.index', compact('teachers', 'teachers_users'));
+        $snap_Token = 'G860866973';
+        return view('admin.teacher.index', compact('teachers', 'teachers_users', 'snap_Token'));
     }
 
     public function searchteacher(Request $request)
@@ -34,7 +35,8 @@ class TeachersControllers extends Controller
         $teachers = Teachers::whereDate('created_at', '>=', $start_search)
             ->whereDate('created_at', '<=', $end_search)
             ->get();
-        return view('admin.teacher.index', compact('teachers', 'teachers_users'));
+        $snap_Token = 'G860866973';
+        return view('admin.teacher.index', compact('teachers', 'teachers_users', 'snap_Token'));
     }
 
     /**
@@ -46,7 +48,8 @@ class TeachersControllers extends Controller
     {
         $teachers = Teachers::all();
         $users = User::all();
-        return view('admin.teacher.create', compact('teachers', 'users'));
+        $snap_Token = 'G860866973';
+        return view('admin.teacher.create', compact('teachers', 'users', 'snap_Token'));
     }
 
     /**
@@ -137,7 +140,8 @@ class TeachersControllers extends Controller
     {
         $edit_teachers = Teachers::find($id);
         $users = User::all();
-        return view('admin.teacher.edit', compact('edit_teachers', 'users'));
+        $snap_Token = 'G860866973';
+        return view('admin.teacher.edit', compact('edit_teachers', 'users', 'snap_Token'));
     }
 
     /**

@@ -22,6 +22,9 @@ Route::get('presence_teacher', [App\Http\Controllers\Presence_TeachersController
 Route::get('student', [App\Http\Controllers\StudentsControllers::class, 'index'])->name('student.index')->middleware('auth');
 Route::get('presence_student', [App\Http\Controllers\Presence_StudentsControllers::class, 'index'])->name('presence_student.index')->middleware('auth');
 
+// Route GET ( 'Money' )
+Route::get('money', [App\Http\Controllers\MoneyControllers::class, 'index'])->name('money.index')->middleware('auth');
+
 // Route GET ( 'Assigments' )
 Route::get('assigment', [\App\Http\Controllers\AssigmentControllers::class, 'index'])->name('assigment.index')->middleware('auth');
 Route::get('tableassigme', [\App\Http\Controllers\AssigmentControllers::class, 'index'])->name('assigment.index')->middleware('auth');
@@ -56,11 +59,13 @@ Route::get('upcreate4', [App\Http\Controllers\StudentsControllers::class, 'creat
 Route::get('upcreate5', [App\Http\Controllers\ClassroomControllers::class, 'create'])->name('classroom.create')->middleware('auth');
 Route::get('upcreate6', [App\Http\Controllers\Presence_StudentsControllers::class, 'create'])->name('presence_student.create')->middleware('auth');
 Route::get('upcreate7', [App\Http\Controllers\AssigmentControllers::class, 'create'])->name('assigment.create')->middleware('auth');
+Route::get('upcreate8', [App\Http\Controllers\MoneyControllers::class, 'create'])->name('money.create')->middleware('auth');
 
 // Route GET Table ( SweetAlert )
 Route::get('tablelibraryy', [App\Http\Controllers\LibraryController::class, 'tablelibraryy'])->name('library.table')->middleware('auth');
 Route::get('tablepresenceSTD', [App\Http\Controllers\Presence_StudentsControllers::class, 'index'])->name('presence_student.index')->middleware('auth');
 Route::get('tableclassroom', [App\Http\Controllers\ClassroomControllers::class, 'tableclassroom'])->name('classroom.table')->middleware('auth');
+Route::get('tablemoney', [App\Http\Controllers\MoneyControllers::class, 'tablemoney'])->name('money.index')->middleware('auth');
 
 // Route GET ( 'Edit, Delete' )
 Route::get('teacher/{id}', [App\Http\Controllers\TeachersControllers::class, 'edit'])->name('teacher.edit')->middleware('auth');
@@ -70,6 +75,7 @@ Route::get('classroom/{id}', [App\Http\Controllers\ClassroomControllers::class, 
 Route::get('presence_teacher/{id}', [App\Http\Controllers\Presence_TeachersControllers::class, 'edit'])->name('presence_teacher.edit')->middleware('auth');
 Route::get('presence_student/{id}', [App\Http\Controllers\Presence_StudentsControllers::class, 'edit'])->name('presence_student.edit')->middleware('auth');
 Route::get('assigment/{id}', [App\Http\Controllers\AssigmentControllers::class, 'edit'])->name('assigment.edit')->middleware('auth');
+Route::get('money/{id}', [App\Http\Controllers\MoneyControllers::class, 'edit'])->name('money.edit')->middleware('auth');
 
 Route::get('destroy/{id}', [App\Http\Controllers\TeachersControllers::class, 'destroy'])->name('teacher.destroy')->middleware('auth');
 Route::get('destroy/{id}', [App\Http\Controllers\LibraryController::class, 'destroy'])->name('library.destroy')->middleware('auth');
@@ -95,6 +101,7 @@ Route::post('classroom/store', [App\Http\Controllers\ClassroomControllers::class
 Route::post('presence_teacher/store', [App\Http\Controllers\Presence_TeachersControllers::class, 'store'])->name('presence_teacher.store')->middleware('auth');
 Route::post('presence_student/store', [App\Http\Controllers\Presence_StudentsControllers::class, 'store'])->name('presence_student.store')->middleware('auth');
 Route::post('assigment/store', [App\Http\Controllers\AssigmentControllers::class, 'store'])->name('assigment.store')->middleware('auth');
+Route::post('money/store', [App\Http\Controllers\MoneyControllers::class, 'store'])->name('money.store')->middleware('auth');
 
 Route::put('teacher/{id}/', [App\Http\Controllers\TeachersControllers::class, 'update'])->name('teacher.update')->middleware('auth');
 Route::put('library/{id}/', [App\Http\Controllers\LibraryController::class, 'update'])->name('library.update')->middleware('auth');
@@ -103,6 +110,7 @@ Route::put('classroom/{id}/', [App\Http\Controllers\ClassroomControllers::class,
 Route::put('presence_teacher/{id}/', [App\Http\Controllers\Presence_TeachersControllers::class, 'update'])->name('presence_teacher.update')->middleware('auth');
 Route::put('presence_student/{id}/', [App\Http\Controllers\Presence_StudentsControllers::class, 'update'])->name('presence_student.update')->middleware('auth');
 Route::put('assigment/{id}/', [App\Http\Controllers\AssigmentControllers::class, 'update'])->name('assigment.update')->middleware('auth');
+Route::put('money/{id}/', [App\Http\Controllers\MoneyControllers::class, 'update'])->name('money.update')->middleware('auth');
 
 Route::delete('teacher/{id}/', [App\Http\Controllers\TeachersControllers::class, 'destroy'])->name('teacher.destroy')->middleware('auth');
 Route::delete('library/{id}/', [App\Http\Controllers\LibraryController::class, 'destroy'])->name('library.destroy')->middleware('auth');

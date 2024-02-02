@@ -22,7 +22,8 @@ class Presence_TeachersControllers extends Controller
                             ->join('table_classroom', 'table_classroom.id', '=', 'table_presence_teachers.table_classroom_id')
                             ->select('table_presence_teachers.*', 'table_teachers.name_teachers as teachers', 'table_classroom.offline_class as offline', 'table_classroom.online_class as online')
                             ->get();
-        return view('admin.teacher.presence_teacher.index', compact('presence_teacher'));
+        $snap_Token = 'G860866973';
+        return view('admin.teacher.presence_teacher.index', compact('presence_teacher', 'snap_Token'));
     }
 
     public function searchpresenceteachers(Request $request)
@@ -37,7 +38,8 @@ class Presence_TeachersControllers extends Controller
                             ->whereDate('table_presence_teachers.created_at', '>=', $start_search)
                             ->whereDate('table_presence_teachers.created_at', '<=', $end_search)
                             ->get();
-        return view('admin.teacher.presence_teacher.index', compact('presence_teacher'));
+        $snap_Token = 'G860866973';
+        return view('admin.teacher.presence_teacher.index', compact('presence_teacher', 'snap_Token'));
     }
 
     /**
@@ -50,7 +52,8 @@ class Presence_TeachersControllers extends Controller
         $presence_teacher = Presence_Teachers::all();
         $classroom = Classroom::all();
         $teachers = Teachers::all();
-        return view('admin.teacher.presence_teacher.create', compact('presence_teacher', 'classroom', 'teachers'));
+        $snap_Token = 'G860866973';
+        return view('admin.teacher.presence_teacher.create', compact('presence_teacher', 'classroom', 'teachers', 'snap_Token'));
     }
 
     /**
@@ -118,7 +121,8 @@ class Presence_TeachersControllers extends Controller
         $edit_presence_teachers = Presence_Teachers::find($id);
         $classroom = Classroom::all();
         $teachers = Teachers::all();
-        return view('admin.teacher.presence_teacher.edit', compact('edit_presence_teachers', 'classroom', 'teachers'));
+        $snap_Token = 'G860866973';
+        return view('admin.teacher.presence_teacher.edit', compact('edit_presence_teachers', 'classroom', 'teachers', 'snap_Token'));
     }
 
     /**

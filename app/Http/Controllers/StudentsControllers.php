@@ -19,8 +19,10 @@ class StudentsControllers extends Controller
         $roleStudent = auth()->user()->role == 'Students';
         $students_users = User::where('role', $roleStudent)->where('isactive', true)->first();
 
+        $snap_Token = 'G860866973';
+
         $students = Students::all();
-        return view('admin.student.index', compact('students', 'students_users'));
+        return view('admin.student.index', compact('students', 'students_users', 'snap_Token'));
     }
 
     public function searchstudents(Request $request)

@@ -238,7 +238,10 @@
                         </div>
                         <div class="col-auto text-end float-end ms-auto download-grp mt-3">
                             @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
-                            <button class="btn btn-small btn-primary" onclick="tablepresenceSTD();"> <i class="fa fa-server" title="library"> </i> Presence Students </button>
+                            <button class="btn btn-small btn-primary" onclick="tablemoney();"> <i class="fas fa-file-invoice-dollar" title="Money Class"> </i> Money Class </button>
+                            @endif
+                            @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
+                            <button class="btn btn-small btn-primary" onclick="tablepresenceSTD();"> <i class="fa fa-server" title="Presence Class"> </i> Presence Class </button>
                             @endif
                             @if(Auth::user()->role == 'Admin')
                             <a href="#" class="btn btn-primary"><i class="fas fa-download" title="Downloads" style="font-size: 18px;"></i></a>
