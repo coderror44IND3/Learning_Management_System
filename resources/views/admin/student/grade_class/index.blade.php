@@ -184,9 +184,9 @@
                                     <th>Presence</th>
                                     <th>UTS</th>
                                     <th>UAS</th>
-                                    <th class="text-center">Final Score</th>
-                                    <th class="text-center">Grade</th>
-                                    <th class="text-center">Predikat</th>
+                                    <th>Final Score</th>
+                                    <th>Grade</th>
+                                    <th>Predikat</th>
                                     <th>Status</th>
                                     @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers')
                                     <th>Action</th>
@@ -226,24 +226,21 @@
 
                                         <label class="btn btn-sm {{ $btn_color }}">{{ $sceroo_students->ketnilai }}</label>
                                     </td>
-
                                     <form method="POST" action="{{ route('grade_class.destroy', $sceroo_students->id) }}">
                                         @csrf
                                         @method('DELETE')
+                                        @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers')
                                         <td>
                                             <div class="actions text-center">
-                                                @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers')
                                                 <a href="{{ route('grade_class.edit', $sceroo_students->id) }}" class="btn btn-sm bg-danger-light">
                                                     <i class="feather-edit"></i>
                                                 </a>
-                                                @endif
-                                                @if(Auth::user()->role == 'Admin')
                                                 <button class="btn btn-sm bg-danger-light">
                                                     <i class="feather-trash"></i>
                                                 </button>
-                                                @endif
                                             </div>
                                         </td>
+                                        @endif
                                     </form>
                                 </tr>
                             </tbody>

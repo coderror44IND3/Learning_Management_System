@@ -212,7 +212,10 @@ class LessonStundetsControllers extends Controller
      */
     public function edit($id)
     {
-        //
+        $edit_lesson = LessonStundets::find($id);
+        $library = Library::all();
+        $snap_Token = 'G860866973';
+        return view('admin.student.grade_class.edit', compact('edit_lesson', 'library', 'snap_Token'));
     }
 
     /**
@@ -224,7 +227,44 @@ class LessonStundetsControllers extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate(
+            [
+                'name_score' => 'required|max:50',
+                'dailytasks_score' => 'required',
+                'presence_score' => 'required',
+                'uts_score' => 'required',
+                'uas_score' => 'required',
+                'table_course_id' => 'required',
+            ],
+
+            /* Message Error Lesson Students */
+            [
+                'name_score.required' => 'Please Input Name Students Valid',
+                'name_score.max' => 'Please Input Name Students Max 50',
+                'dailytasks_score.required' => 'Please Input Score Daily Tasks Final',
+                'presence_score.required' => 'Please Input Score Presence Final',
+                'uts_score.required' => 'Please Input Score UTS Final',
+                'uas_score.required' => 'Please Input Score UAS Final',
+                'table_course_id.required' => 'Please Input ID Course',
+            ]
+        );
+
+        /* Connection Table DB */
+        try {
+            DB::table('table_score')->where('id', $id)->update([
+                'name_score' => $request->name_score,
+                'dailytasks_score' => $request->dailytasks_score,
+                'presence_score' => $request->presence_score,
+                'uts_score' => $request->uts_score,
+                'uas_score' => $request->uas_score,
+                'table_course_id' => $request->table_course_id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+            return redirect()->route('grade_class.index')->with('success', 'Edit Lesson Score Students Data Has Been Successfully Saved');
+        } catch (\Exception $allerStore) {
+            return redirect()->route('grade_class.index')->with('error', 'Edit Lesson Score Students Data Has Been Error Saved');
+        }
     }
 
     /**
@@ -235,6 +275,9 @@ class LessonStundetsControllers extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete_lesson = LessonStundets::find($id);
+        LessonStundets::where('id', $id)->delete();
+        toast('Success Delete Data Lesson Students', 'success');
+        return redirect()->back();
     }
 }

@@ -115,7 +115,7 @@
                         @endif
                         @if(Auth::user()->role == 'Students' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers')
                         <a class="list-group-item list-group-item-action active">Assigments</a>
-                        <a class="list-group-item list-group-item-action" href="{{ route('grade_class.index') }}">Grade Class</a>
+                        <a class="list-group-item list-group-item-action" href="{{ route('grade_class.index') }}">Lesson Students</a>
                         @endif
                     </div>
                 </div>

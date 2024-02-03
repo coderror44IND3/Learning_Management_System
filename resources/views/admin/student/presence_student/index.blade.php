@@ -115,8 +115,9 @@
                         <a class="list-group-item list-group-item-action" href="{{ route('student.index') }}">Students</a>
                         @endif
                         @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers')
-                        <a class="list-group-item list-group-item-action" href="{{ route('teacher.index') }}">Teachers</a>
                         <a class="list-group-item list-group-item-action" href="{{ route('presence_teacher.index') }}">Presence Teachers</a>
+                        @endif
+                        @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers' || Auth::user()->role == 'Students')
                         <a class="list-group-item list-group-item-action active">Presence Students</a>
                         @endif
                     </div>
@@ -187,7 +188,7 @@
                                     <th>Date</th>
                                     <th>Clock</th>
                                     <th>Presence</th>
-                                    @if(Auth::user()->role == 'Admin')
+                                    @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers')
                                     <th>Action</th>
                                     @endif
                                 </tr>
@@ -225,7 +226,7 @@
                                         <span class="btn btn-sm label-style text-center text-white {{ $btn_color }}"> {{ $presences->status_presence }} </span>
 
                                     </td>
-                                    @if(Auth::user()->role == 'Admin')
+                                    @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers')
                                     <form method="POST" action="{{ route('presence_student.destroy', $presences->id) }}">
                                         @csrf
                                         @method('DELETE')

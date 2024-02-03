@@ -112,7 +112,7 @@
                     <div id="" class="">
                         <a class="list-group-item list-group-item-action active">Students</a>
                         <a class="list-group-item list-group-item-action" href="{{ route('assigment.index') }}">Assigments</a>
-                        <a class="list-group-item list-group-item-action" href="{{ route('grade_class.index') }}">Grade Class</a>
+                        <a class="list-group-item list-group-item-action" href="{{ route('grade_class.index') }}">Lesson Students</a>
                     </div>
                 </div>
 
