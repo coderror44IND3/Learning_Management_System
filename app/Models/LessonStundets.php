@@ -18,7 +18,7 @@ class LessonStundets extends Model
         'uas_score',
         'table_course_id',
         'created_at',
-        'update_at'
+        'updated_at'
     ];
 
     public function post(): BelongsTo

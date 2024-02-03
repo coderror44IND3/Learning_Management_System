@@ -110,8 +110,8 @@
                     </div>
                     <hr>
                     <div id="" class="">
-                        <a class="list-group-item list-group-item-action" href="{{ route('grade_class.index') }}">Grade Class</a>
-                        <a class="list-group-item list-group-item-action active">Grade Class Add</a>
+                        <a class="list-group-item list-group-item-action" href="{{ route('grade_class.index') }}">Lesson Students</a>
+                        <a class="list-group-item list-group-item-action active">Lesson Students Add</a>
                     </div>
                 </div>
 
@@ -145,11 +145,11 @@
                                 <div class="row mt-3">
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
-                                            <label>Course <span class="login-danger">*</span></label>
-                                            <input type="text" name="course_univesity" value="{{ old('course_univesity') }}" class="form-control @error('course_univesity') is-invalid @else is-valid @enderror">
+                                            <label>Name Students <span class="login-danger">*</span></label>
+                                            <input type="text" name="name_score" value="{{ old('name_score') }}" class="form-control @error('name_score') is-invalid @else is-valid @enderror">
 
                                             <!-- Message Error -->
-                                            @error('course_univesity')
+                                            @error('name_score')
                                             <div class="invalid-feedback">
                                                 {{$message}}
                                             </div>
@@ -159,11 +159,11 @@
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
-                                            <label>Date <span class="login-danger">*</span></label>
-                                            <input type="date" name="date_univesity" value="{{ old('date_univesity') }}" class="form-control @error('date_univesity') is-invalid @else is-valid @enderror">
+                                            <label>Daily Tasks <span class="login-danger">*</span></label>
+                                            <input type="text" name="dailytasks_score" value="{{ old('dailytasks_score') }}" class="form-control @error('dailytasks_score') is-invalid @else is-valid @enderror">
 
                                             <!-- Message Error -->
-                                            @error('date_univesity')
+                                            @error('dailytasks_score')
                                             <div class="invalid-feedback">
                                                 {{$message}}
                                             </div>
@@ -173,22 +173,70 @@
                                     </div>
                                     <div class="col-12 col-sm-4">
                                         <div class="form-group local-forms">
-                                            <label>Deksripsi <span class="login-danger">*</span></label>
-                                            <textarea name="deksripsi_univesity" class="form-control @error('deksripsi_univesity') is-invalid @else is-valid @enderror" id="deksripsi_univesity">{{ old('deksripsi_univesity') }}</textarea>
-                                        </div>
+                                            <label>Presence <span class="login-danger">*</span></label>
+                                            <input type="text" name="presence_score" value="{{ old('presence_score') }}" class="form-control @error('presence_score') is-invalid @else is-valid @enderror">
 
-                                        <!-- Message Error -->
-                                        @error('deksripsi_univesity')
-                                        <div class="invalid-feedback">
-                                            {{$message}}
-                                        </div>
-                                        @enderror
+                                            <!-- Message Error -->
+                                            @error('presence_score')
+                                            <div class="invalid-feedback">
+                                                {{$message}}
+                                            </div>
+                                            @enderror
 
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label>UTS <span class="login-danger">*</span></label>
+                                            <input type="text" name="uts_score" value="{{ old('uts_score') }}" class="form-control @error('uts_score') is-invalid @else is-valid @enderror">
+
+                                            <!-- Message Error -->
+                                            @error('uts_score')
+                                            <div class="invalid-feedback">
+                                                {{$message}}
+                                            </div>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label>UAS <span class="login-danger">*</span></label>
+                                            <input type="text" name="uas_score" value="{{ old('uas_score') }}" class="form-control @error('uas_score') is-invalid @else is-valid @enderror">
+
+                                            <!-- Message Error -->
+                                            @error('uas_score')
+                                            <div class="invalid-feedback">
+                                                {{$message}}
+                                            </div>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label> Library ID <span class="login-danger">*</span></label>
+                                            <select name="table_course_id" class="form-control select @error('table_course_id') is-invalid @else is-valid @enderror">
+                                                <option>--- Select Library ID ---</option>
+                                                @foreach($library as $users_ac)
+                                                @php $sel = (old('table_course_id') == $users_ac['id']) ? 'selected' : ''; @endphp
+                                                <option class="optins" value="{{ $users_ac->id }}" {{ $sel }}>{{ $users_ac->course_univesity }}</option>
+                                                @endforeach
+                                            </select>
+
+                                            <!-- Message Error -->
+                                            @error('table_course_id')
+                                            <div class="invalid-feedback">
+                                                {{$message}}
+                                            </div>
+                                            @enderror
+
+                                        </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="" style="float: right;">
                                             <button type="submit" name="proses" value="simpan" id="simpan" class="btn btn-primary">Create</button>
-                                            <a href="{{ route('library.index') }}" class="btn btn-primary">Cancel</a>
+                                            <a href="{{ route('grade_class.index') }}" class="btn btn-primary">Cancel</a>
                                         </div>
                                     </div>
                                 </div>

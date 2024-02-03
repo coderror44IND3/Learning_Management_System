@@ -128,7 +128,6 @@ class LessonStundetsControllers extends Controller
         $lesson_score = LessonStundets::whereDate('created_at', '>=', $start_search)
             ->whereDate('created_at', '<=', $end_search)
             ->get();
-
         $snap_Token = 'G860866973';
         return view('admin.student.grade_class.index', compact('lesson_score', 'snap_Token'));
     }
@@ -154,7 +153,44 @@ class LessonStundetsControllers extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'name_score' => 'required|max:50',
+                'dailytasks_score' => 'required',
+                'presence_score' => 'required',
+                'uts_score' => 'required',
+                'uas_score' => 'required',
+                'table_course_id' => 'required',
+            ],
+
+            /* Message Error Lesson Students */
+            [
+                'name_score.required' => 'Please Input Name Students Valid',
+                'name_score.max' => 'Please Input Name Students Max 50',
+                'dailytasks_score.required' => 'Please Input Score Daily Tasks Final',
+                'presence_score.required' => 'Please Input Score Presence Final',
+                'uts_score.required' => 'Please Input Score UTS Final',
+                'uas_score.required' => 'Please Input Score UAS Final',
+                'table_course_id.required' => 'Please Input ID Course',
+            ]
+        );
+
+        /* Connection Table DB */
+        try {
+            DB::table('table_score')->insert([
+                'name_score' => $request->name_score,
+                'dailytasks_score' => $request->dailytasks_score,
+                'presence_score' => $request->presence_score,
+                'uts_score' => $request->uts_score,
+                'uas_score' => $request->uas_score,
+                'table_course_id' => $request->table_course_id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+            return redirect()->route('grade_class.create')->with('success', 'New Lesson Score Students Data Has Been Successfully Saved');
+        } catch (\Exception $allerStore) {
+            return redirect()->route('grade_class.create')->with('error', 'New Lesson Score Students Data Has Been Error Saved');
+        }
     }
 
     /**

@@ -115,7 +115,7 @@
                         @endif
                         @if(Auth::user()->role == 'Students' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers')
                         <a class="list-group-item list-group-item-action" href="{{ route('assigment.index') }}">Assigments</a>
-                        <a class="list-group-item list-group-item-action active">Grade Class</a>
+                        <a class="list-group-item list-group-item-action active">Lesson Students</a>
                         @endif
                     </div>
                 </div>
@@ -184,8 +184,11 @@
                                     <th>Presence</th>
                                     <th>UTS</th>
                                     <th>UAS</th>
+                                    <th class="text-center">Final Score</th>
+                                    <th class="text-center">Grade</th>
+                                    <th class="text-center">Predikat</th>
                                     <th>Status</th>
-                                    @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
+                                    @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers')
                                     <th>Action</th>
                                     @endif
                                 </tr>
@@ -200,7 +203,10 @@
                                     <td>{{ $sceroo_students->presence_score }}</td>
                                     <td>{{ $sceroo_students->uts_score }}</td>
                                     <td>{{ $sceroo_students->uas_score }}</td>
-                                    <td class="text-center">
+                                    <td>{{ $sceroo_students->average_grade }}</td>
+                                    <td>{{ $sceroo_students->grade }}</td>
+                                    <td>{{ $sceroo_students->predikat }}</td>
+                                    <td>
 
                                         @php
                                         $status_ketvalue = $sceroo_students->ketnilai;
@@ -226,7 +232,7 @@
                                         @method('DELETE')
                                         <td>
                                             <div class="actions text-center">
-                                                @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
+                                                @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers')
                                                 <a href="{{ route('grade_class.edit', $sceroo_students->id) }}" class="btn btn-sm bg-danger-light">
                                                     <i class="feather-edit"></i>
                                                 </a>

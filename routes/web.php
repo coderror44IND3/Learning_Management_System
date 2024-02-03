@@ -83,6 +83,7 @@ Route::get('presence_teacher/{id}', [App\Http\Controllers\Presence_TeachersContr
 Route::get('presence_student/{id}', [App\Http\Controllers\Presence_StudentsControllers::class, 'edit'])->name('presence_student.edit')->middleware('auth');
 Route::get('assigment/{id}', [App\Http\Controllers\AssigmentControllers::class, 'edit'])->name('assigment.edit')->middleware('auth');
 Route::get('money/{id}', [App\Http\Controllers\MoneyControllers::class, 'edit'])->name('money.edit')->middleware('auth');
+Route::get('grade_class/{id}', [App\Http\Controllers\LessonStundetsControllers::class, 'edit'])->name('grade_class.edit')->middleware('auth');
 
 Route::get('destroy/{id}', [App\Http\Controllers\TeachersControllers::class, 'destroy'])->name('teacher.destroy')->middleware('auth');
 Route::get('destroy/{id}', [App\Http\Controllers\LibraryController::class, 'destroy'])->name('library.destroy')->middleware('auth');
@@ -92,6 +93,7 @@ Route::get('destroy/{id}', [App\Http\Controllers\Presence_TeachersControllers::c
 Route::get('destroy/{id}', [App\Http\Controllers\Presence_StudentsControllers::class, 'destroy'])->name('presence_student.destroy')->middleware('auth');
 Route::get('destroy/{id}', [App\Http\Controllers\AssigmentControllers::class, 'destroy'])->name('assigment.destroy')->middleware('auth');
 Route::get('destroy/{id}', [App\Http\Controllers\MoneyControllers::class, 'destroy'])->name('money.destroy')->middleware('auth');
+Route::get('destroy/{id}', [App\Http\Controllers\LessonStundetsControllers::class, 'destroy'])->name('grade_class.destroy')->middleware('auth');
 
 // Route POST ( 'Search' )
 Route::post('searchteacher/searchteacher', [App\Http\Controllers\TeachersControllers::class, 'searchteacher'])->name('teacher.searchteacher')->middleware('auth');
@@ -121,6 +123,7 @@ Route::put('presence_teacher/{id}/', [App\Http\Controllers\Presence_TeachersCont
 Route::put('presence_student/{id}/', [App\Http\Controllers\Presence_StudentsControllers::class, 'update'])->name('presence_student.update')->middleware('auth');
 Route::put('assigment/{id}/', [App\Http\Controllers\AssigmentControllers::class, 'update'])->name('assigment.update')->middleware('auth');
 Route::put('money/{id}/', [App\Http\Controllers\MoneyControllers::class, 'update'])->name('money.update')->middleware('auth');
+Route::put('grade_class/{id}/', [App\Http\Controllers\LessonStundetsControllers::class, 'update'])->name('grade_class.update')->middleware('auth');
 
 Route::delete('teacher/{id}/', [App\Http\Controllers\TeachersControllers::class, 'destroy'])->name('teacher.destroy')->middleware('auth');
 Route::delete('library/{id}/', [App\Http\Controllers\LibraryController::class, 'destroy'])->name('library.destroy')->middleware('auth');
@@ -130,5 +133,6 @@ Route::delete('presence_teacher/{id}/', [App\Http\Controllers\Presence_TeachersC
 Route::delete('presence_student/{id}/', [App\Http\Controllers\Presence_StudentsControllers::class, 'destroy'])->name('presence_student.destroy')->middleware('auth');
 Route::delete('assigment/{id}/', [App\Http\Controllers\AssigmentControllers::class, 'destroy'])->name('assigment.destroy')->middleware('auth');
 Route::delete('money/{id}/', [App\Http\Controllers\MoneyControllers::class, 'destroy'])->name('money.destroy')->middleware('auth');
+Route::delete('grade_class/{id}/', [App\Http\Controllers\LessonStundetsControllers::class, 'destroy'])->name('grade_class.destroy')->middleware('auth');
 
 Auth::routes();
