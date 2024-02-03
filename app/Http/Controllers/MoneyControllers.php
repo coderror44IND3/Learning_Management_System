@@ -115,6 +115,52 @@ class MoneyControllers extends Controller
 
     public function update(Request $request, $id)
     {
-        
+        $request->validate(
+            [
+                'name' => 'required|max:50',
+                'class_students' => 'required|max:50',
+                'money_students' => 'required',
+                'date' => 'required',
+                'clock' => 'required',
+                'status_students' => 'required',
+            ],
+
+            /* Message Error Library */
+            [
+                'name.max' => 'Please Input Name Students Max 50',
+                'name.required' => 'Please Input Name Students',
+                'class_students.max' => 'Please Input Class Students Max 50',
+                'class_students.required' => 'Please Input Class Students',
+                'money_students.required' => 'Please Input Money Class Valid',
+                'date.required' => 'Please Input Date Valid',
+                'clock.required' => 'Please Input Clock Valid',
+                'status_students.required' => 'Please Input status Valid',
+            ]
+        );
+
+        /* Connection Table DB */
+        try {
+            DB::table('table_money_students')->where('id', $id)->update([
+                'name' => $request->name,
+                'class_students' => $request->class_students,
+                'money_students' => $request->money_students,
+                'date' => $request->date,
+                'clock' => $request->clock,
+                'status_students' => $request->status_students,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+            return redirect()->route('money.index')->with('success', 'Edit Money Class Data Has Been Successfully Saved');
+        } catch (\Exception $allerStore) {
+            return redirect()->route('money.index')->with('error', 'Edit Money Class Data Has Been Error Saved');
+        }
+    }
+
+    public function destroy($id)
+    {
+        $delete_money = Money::find($id);
+        Money::where('id', $id)->delete();
+        toast('Success Delete Data Money Class', 'success');
+        return redirect()->back();
     }
 }

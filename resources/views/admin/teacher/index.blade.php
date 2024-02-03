@@ -240,8 +240,8 @@
                         </div>
                         <div class="col-auto text-end float-end ms-auto download-grp mt-3">
                             @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students' || Auth::user()->role == 'Teachers')
-                            <button class="btn btn-small btn-primary"> <i class="fa fa-server" title="assigments students"> </i> Grade Class </button>
-                            <button class="btn btn-small btn-primary" onclick="tableassigme();"> <i class="fa fa-server" title="assigments students"> </i> Assigments </button>
+                            <button class="btn btn-small btn-primary" onclick="tablegrade();"> <i class="fa fa-server" title="Lesson Students"> </i> Grade Class </button>
+                            <button class="btn btn-small btn-primary" onclick="tableassigme();"> <i class="fa fa-server" title="Assigments Students"> </i> Assigments </button>
                             @endif
                             @if(Auth::user()->role == 'Admin')
                             <a href="#" class="btn btn-primary"><i class="fas fa-download" title="Downloads" style="font-size: 18px;"></i></a>

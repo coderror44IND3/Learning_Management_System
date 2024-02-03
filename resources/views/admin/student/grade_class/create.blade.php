@@ -1,7 +1,7 @@
 @extends('admin.layouts.index')
 @section('content')
 <div class="page-wrapper">
-    @if(Auth::user()->role == 'Students' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers')
+    @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers')
     <div class="content container-fluid">
         @include('sweetalert::alert')
         <div class="page-header">
@@ -10,7 +10,7 @@
                     <div class="page-sub-header">
 
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('grade_class.index') }}">Lesson Students</a></li>
                             <li class="breadcrumb-item active">
                                 @if(empty(Auth::user()->role))
                                 @else
@@ -87,13 +87,13 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12 col-lg-5">
+            <div class="col-md-12 col-lg-4">
 
                 <div class="card card-chart">
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col-6">
-                                <h5 class="card-title judul-detail">List Assigments</h5>
+                                <h5 class="card-title judul-detail">List Lesson</h5>
                             </div>
                             <div class="col-6">
                                 <ul class="chart-list-out">
@@ -110,47 +110,19 @@
                     </div>
                     <hr>
                     <div id="" class="">
-                        @if(Auth::user()->role == 'Students' || Auth::user()->role == 'Admin')
-                        <a class="list-group-item list-group-item-action" href="{{ route('student.index') }}">Students</a>
-                        @endif
-                        @if(Auth::user()->role == 'Students' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers')
-                        <a class="list-group-item list-group-item-action active">Assigments</a>
                         <a class="list-group-item list-group-item-action" href="{{ route('grade_class.index') }}">Grade Class</a>
-                        @endif
+                        <a class="list-group-item list-group-item-action active">Grade Class Add</a>
                     </div>
                 </div>
 
             </div>
-
-            <div class="col-md-12 col-lg-7">
-
-                <div class="student-group-form">
-                    <form action="/searchassigments" method="GET">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6">
-                                <div class="form-group">
-                                    <input type="date" name="start_search" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="form-group">
-                                    <input type="date" name="end_search" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-lg-2">
-                                <div class="search-student-btn">
-                                    <button type="btn" class="btn btn-primary">Search</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+            <div class="col-md-12 col-lg-8">
 
                 <div class="card card-chart">
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col-6">
-                                <h5 class="card-title judul-detail">Assigment Students</h5>
+                                <h5 class="card-title judul-detail">Create Lesson Students</h5>
                             </div>
                             <div class="col-6">
                                 <ul class="chart-list-out">
@@ -164,60 +136,66 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-auto text-end float-end ms-auto download-grp mt-3">
-                            @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
-                            <button onclick="createassigments();" class="btn btn-primary"><i class="fa fa-plus-circle" title="Create" style="font-size: 18px;"></i></button>
-                            @endif
-                        </div>
                     </div>
                     <hr>
-                    <div class="table-responsive mt-3">
-                        <table class="table border-0 star-student table-hover table-center mb-0 table-striped" id="dataTable">
-                            <thead class="text-center details-teacher" bgcolor='#0D6EFD'>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Name</th>
-                                    <th>Date</th>
-                                    <th>Assigments</th>
-                                    @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
-                                    <th>Action</th>
-                                    @endif
-                                </tr>
-                            </thead>
-                            <tbody class="text-center">
-                                @php $no = 1; @endphp
-                                @foreach($assigment as $assig_st)
-                                <tr class="text-center">
-                                    <td>{{ $no }}</td>
-                                    <td>{{ $assig_st->students }}</td>
-                                    <td>{{ $assig_st->datetime_assigments }}</td>
-                                    <td class="text-center">
-                                        <a target="_blank" class="text-center btn btn-sm btn-success img-fluid" style="color: white;" href="{{ asset('admin/assets/assigment/student/' . $assig_st->files_assigments) }}">{{ $assig_st->files_assigments }}</a>
-                                    </td>
-                                    <form method="POST" action="{{ route('assigment.destroy', $assig_st->id) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <td>
-                                            <div class="actions text-center">
-                                                @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
-                                                <a href="{{ route('assigment.edit', $assig_st->id) }}" class="btn btn-sm bg-danger-light">
-                                                    <i class="feather-edit"></i>
-                                                </a>
-                                                @endif
-                                                @if(Auth::user()->role == 'Admin')
-                                                <button class="btn btn-sm bg-danger-light">
-                                                    <i class="feather-trash"></i>
-                                                </button>
-                                                @endif
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="POST" action="{{ route('grade_class.store') }}" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row mt-3">
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label>Course <span class="login-danger">*</span></label>
+                                            <input type="text" name="course_univesity" value="{{ old('course_univesity') }}" class="form-control @error('course_univesity') is-invalid @else is-valid @enderror">
+
+                                            <!-- Message Error -->
+                                            @error('course_univesity')
+                                            <div class="invalid-feedback">
+                                                {{$message}}
                                             </div>
-                                        </td>
-                                    </form>
-                                </tr>
-                            </tbody>
-                            @php $no++; @endphp
-                            @endforeach
-                        </table>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label>Date <span class="login-danger">*</span></label>
+                                            <input type="date" name="date_univesity" value="{{ old('date_univesity') }}" class="form-control @error('date_univesity') is-invalid @else is-valid @enderror">
+
+                                            <!-- Message Error -->
+                                            @error('date_univesity')
+                                            <div class="invalid-feedback">
+                                                {{$message}}
+                                            </div>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-4">
+                                        <div class="form-group local-forms">
+                                            <label>Deksripsi <span class="login-danger">*</span></label>
+                                            <textarea name="deksripsi_univesity" class="form-control @error('deksripsi_univesity') is-invalid @else is-valid @enderror" id="deksripsi_univesity">{{ old('deksripsi_univesity') }}</textarea>
+                                        </div>
+
+                                        <!-- Message Error -->
+                                        @error('deksripsi_univesity')
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
+
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="" style="float: right;">
+                                            <button type="submit" name="proses" value="simpan" id="simpan" class="btn btn-primary">Create</button>
+                                            <a href="{{ route('library.index') }}" class="btn btn-primary">Cancel</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
+
                 </div>
 
             </div>

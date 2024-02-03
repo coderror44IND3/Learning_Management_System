@@ -93,7 +93,7 @@
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col-6">
-                                <h5 class="card-title judul-detail">List Assigments</h5>
+                                <h5 class="card-title judul-detail">List Lesson</h5>
                             </div>
                             <div class="col-6">
                                 <ul class="chart-list-out">
@@ -114,8 +114,8 @@
                         <a class="list-group-item list-group-item-action" href="{{ route('student.index') }}">Students</a>
                         @endif
                         @if(Auth::user()->role == 'Students' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers')
-                        <a class="list-group-item list-group-item-action active">Assigments</a>
-                        <a class="list-group-item list-group-item-action" href="{{ route('grade_class.index') }}">Grade Class</a>
+                        <a class="list-group-item list-group-item-action" href="{{ route('assigment.index') }}">Assigments</a>
+                        <a class="list-group-item list-group-item-action active">Grade Class</a>
                         @endif
                     </div>
                 </div>
@@ -125,7 +125,7 @@
             <div class="col-md-12 col-lg-7">
 
                 <div class="student-group-form">
-                    <form action="/searchassigments" method="GET">
+                    <form action="/searchlesson" method="GET">
                         <div class="row">
                             <div class="col-lg-4 col-md-6">
                                 <div class="form-group">
@@ -150,7 +150,7 @@
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col-6">
-                                <h5 class="card-title judul-detail">Assigment Students</h5>
+                                <h5 class="card-title judul-detail">Lesson Students</h5>
                             </div>
                             <div class="col-6">
                                 <ul class="chart-list-out">
@@ -166,7 +166,10 @@
                         </div>
                         <div class="col-auto text-end float-end ms-auto download-grp mt-3">
                             @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
-                            <button onclick="createassigments();" class="btn btn-primary"><i class="fa fa-plus-circle" title="Create" style="font-size: 18px;"></i></button>
+                            <a href="#" class="btn btn-primary"><i class="fas fa-download" title="Downloads" style="font-size: 18px;"></i></a>
+                            @endif
+                            @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers')
+                            <button onclick="createlesson();" class="btn btn-primary"><i class="fa fa-plus-circle" title="Create" style="font-size: 18px;"></i></button>
                             @endif
                         </div>
                     </div>
@@ -177,8 +180,11 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Name</th>
-                                    <th>Date</th>
-                                    <th>Assigments</th>
+                                    <th>Dailytasks</th>
+                                    <th>Presence</th>
+                                    <th>UTS</th>
+                                    <th>UAS</th>
+                                    <th>Status</th>
                                     @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
                                     <th>Action</th>
                                     @endif
@@ -186,21 +192,42 @@
                             </thead>
                             <tbody class="text-center">
                                 @php $no = 1; @endphp
-                                @foreach($assigment as $assig_st)
+                                @foreach($lesson_score as $sceroo_students)
                                 <tr class="text-center">
                                     <td>{{ $no }}</td>
-                                    <td>{{ $assig_st->students }}</td>
-                                    <td>{{ $assig_st->datetime_assigments }}</td>
+                                    <td>{{ $sceroo_students->name_score }}</td>
+                                    <td>{{ $sceroo_students->dailytasks_score }}</td>
+                                    <td>{{ $sceroo_students->presence_score }}</td>
+                                    <td>{{ $sceroo_students->uts_score }}</td>
+                                    <td>{{ $sceroo_students->uas_score }}</td>
                                     <td class="text-center">
-                                        <a target="_blank" class="text-center btn btn-sm btn-success img-fluid" style="color: white;" href="{{ asset('admin/assets/assigment/student/' . $assig_st->files_assigments) }}">{{ $assig_st->files_assigments }}</a>
+
+                                        @php
+                                        $status_ketvalue = $sceroo_students->ketnilai;
+                                        $btn_color = '';
+
+                                        switch ($status_ketvalue){
+                                        case 'Graduate';
+                                        $btn_color = 'btn-success';
+                                        break;
+                                        case 'Not Pass':
+                                        $btn_color = 'btn-danger';
+                                        break;
+                                        default:
+                                        $status_ketvalue = '';
+                                        }
+                                        @endphp
+
+                                        <label class="btn btn-sm {{ $btn_color }}">{{ $sceroo_students->ketnilai }}</label>
                                     </td>
-                                    <form method="POST" action="{{ route('assigment.destroy', $assig_st->id) }}">
+
+                                    <form method="POST" action="{{ route('grade_class.destroy', $sceroo_students->id) }}">
                                         @csrf
                                         @method('DELETE')
                                         <td>
                                             <div class="actions text-center">
                                                 @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
-                                                <a href="{{ route('assigment.edit', $assig_st->id) }}" class="btn btn-sm bg-danger-light">
+                                                <a href="{{ route('grade_class.edit', $sceroo_students->id) }}" class="btn btn-sm bg-danger-light">
                                                     <i class="feather-edit"></i>
                                                 </a>
                                                 @endif

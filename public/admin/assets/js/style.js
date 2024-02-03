@@ -191,6 +191,30 @@ function createmoney() {
     })
 }
 
+function createlesson() {
+    Swal.fire({
+        title: 'Do you want to add data to become a lesson students ? ',
+        icon: 'question',
+        showCancelButton: true,
+        customClass: 'swal-wide',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Create!',
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location = 'upcreate9';
+        } else {
+            Swal.fire('Addition of lesson students data cancelled!', '', 'error');
+        }
+    })
+}
+
 // Function Table SweetAlert
 function tablelibraryy() {
     Swal.fire({
@@ -306,6 +330,30 @@ function tablemoney() {
     }).then((result) => {
         if (result.isConfirmed) {
             window.location = 'tablemoney';
+        } else {
+            Swal.fire('Go to table page cancelled!', '', 'error');
+        }
+    })
+}
+
+function tablegrade() {
+    Swal.fire({
+        title: 'Do you want to add data to become a lesson students ? ',
+        icon: 'question',
+        showCancelButton: true,
+        customClass: 'swal-wide',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Table Lesson Students!',
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location = 'tablegrade';
         } else {
             Swal.fire('Go to table page cancelled!', '', 'error');
         }

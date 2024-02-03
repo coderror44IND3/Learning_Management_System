@@ -114,9 +114,10 @@
                                     <a href="{{ route('library.index') }}">
                                         <img src="{{ asset('admin/assets/img/logo-small.png') }}" alt="Post Author">
                                         <span>
-                                            <span class="post-title"> Class {{ $money->class_students}} </span>
-                                            <span class="post-title"><i class="fas fa-calendar-day"> {{ $money->date }} </i> </span>
-                                            <span class="post-date"><i class="far fa-clock"> {{ $money->clock }} </i> </span>
+                                            <span class="post-title"> Classroom {{ $money->class_students }} </span>
+                                            <span class="post-title mt-2"><i class="fas fa-calendar-day"> {{ $money->date }} </i> </span>
+                                            <span class="post-date mt-2"><i class="far fa-clock mt-2"> {{ $money->clock }} </i> </span><br>
+                                            <span class="post-date text-success mt-2"><i class="fas fa-file-invoice-dollar mt-2"> Rp. {{ number_format($money->money_students,0,',','.') }} </i> </span>
                                         </span>
                                     </a>
                                 </div>
@@ -144,12 +145,14 @@
                     <div class="row">
                         <div class="edit-options">
                             <div class="edit-delete-btn">
-                                @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Treasurer')
-                                <a href="{{ route('money.edit', $money->id) }}" class="text-success"><i class="feather-edit-3 me-1"></i> Edit</a>
-                                @endif
-                                @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students' || Auth::user()->role == 'Treasurer')
-                                <span class="post-date btn btn-small btn-success text-white"><i class="fas fa-file-invoice-dollar"> Rp. {{ number_format($money->money_students,0,',','.') }} </i> </span>
-                                @endif
+                                <form method="POST" action="{{ route('money.destroy', $money->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Treasurer')
+                                    <a href="{{ route('money.edit', $money->id) }}" style="height: 29px;" class="btn btn-sm bg-warning text-white"><i class="feather-edit me-1"></i> Edit</a>
+                                    <button class="post-date btn btn-sm bg-danger text-white"><i class="feather-trash-2 text-white"></i> Delete </button>
+                                    @endif
+                                </form>
                             </div>
                         </div>
                     </div>

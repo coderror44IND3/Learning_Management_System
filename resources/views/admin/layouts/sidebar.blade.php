@@ -15,7 +15,7 @@
                 @endif
                 @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers')
                 <li class="menu-title">
-                    <span>University Teachers</span>
+                    <span>Teachers</span>
                 </li>
                 <li class="">
                     <a href="{{ route('teacher.index') }}"><i class="fas fa-chalkboard-teacher"></i> <span>Teachers</span></a>
@@ -23,7 +23,7 @@
                 @endif
                 @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
                 <li class="menu-title">
-                    <span>University Students</span>
+                    <span>Students</span>
                 </li>
                 <li class="">
                     <a href="{{ route('student.index') }}"><i class="fas fa-graduation-cap"></i> <span>Students</span></a>
@@ -31,7 +31,7 @@
                 @endif
                 @if(Auth::user()->role == 'Prodi' || Auth::user()->role == 'Teachers' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
                 <li class="menu-title">
-                    <span>University Class</span>
+                    <span>Classroom</span>
                 </li>
                 <li class="">
                     <a href="{{ route('classroom.index') }}"><i class="fas fa-book-reader"></i> <span>Classroom</span></a>
@@ -42,7 +42,7 @@
                 @endif
                 @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Anggota' || Auth::user()->role == 'Rektor')
                 <li class="menu-title">
-                    <span>University Organization</span>
+                    <span>Organization</span>
                 </li>
                 <li class="">
                     <a href="#"><i class="fas fa-building"></i> <span>Organization</span></a>
@@ -50,7 +50,7 @@
                 @endif
                 @if(Auth::user()->role == 'Prodi' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers' || Auth::user()->role == 'Students' || Auth::user()->role == 'Anggota' || Auth::user()->role == 'Rektor')
                 <li class="menu-title">
-                    <span>University Calender</span>
+                    <span>Calender</span>
                 </li>
                 <li class="">
                     <a href="#"><i class="fas fa-calendar-day"></i> <span>Calender</span></a>
@@ -58,7 +58,7 @@
                 @endif
                 @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi' || Auth::user()->role == 'Teachers' || Auth::user()->role == 'Students')
                 <li class="menu-title">
-                    <span>University Contact</span>
+                    <span>Contact</span>
                 </li>
                 <li class="">
                     <a href="#"><i class="fas fa-address-book"></i> <span>Contact</span></a>
