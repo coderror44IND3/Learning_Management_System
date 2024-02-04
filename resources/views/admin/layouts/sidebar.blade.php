@@ -5,7 +5,7 @@
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
-                @if(Auth::user()->role == 'Prodi' || Auth::user()->role == 'Students' || Auth::user()->role == 'Anggota' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers' || Auth::user()->role == 'Rektor')
+                @if(Auth::user()->role == 'Prodi' || Auth::user()->role == 'Treasurer' || Auth::user()->role == 'Students' || Auth::user()->role == 'Anggota' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers' || Auth::user()->role == 'Rektor')
                 <li class="menu-title">
                     <span>Dashboard</span>
                 </li>
@@ -21,7 +21,7 @@
                     <a href="{{ route('teacher.index') }}"><i class="fas fa-chalkboard-teacher"></i> <span>Teachers</span></a>
                 </li>
                 @endif
-                @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
+                @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students' || Auth::user()->role == 'Treasurer')
                 <li class="menu-title">
                     <span>Students</span>
                 </li>
@@ -45,10 +45,10 @@
                     <span>Organization</span>
                 </li>
                 <li class="">
-                    <a href="#"><i class="fas fa-building"></i> <span>Organization</span></a>
+                    <a href="{{ route('organization.index') }}"><i class="fas fa-building"></i> <span>Organization</span></a>
                 </li>
                 @endif
-                @if(Auth::user()->role == 'Prodi' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers' || Auth::user()->role == 'Students' || Auth::user()->role == 'Anggota' || Auth::user()->role == 'Rektor')
+                @if(Auth::user()->role == 'Prodi' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Teachers' || Auth::user()->role == 'Students' || Auth::user()->role == 'Anggota' || Auth::user()->role == 'Rektor' || Auth::user()->role == 'Treasurer')
                 <li class="menu-title">
                     <span>Calender</span>
                 </li>
@@ -56,7 +56,7 @@
                     <a href="#"><i class="fas fa-calendar-day"></i> <span>Calender</span></a>
                 </li>
                 @endif
-                @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi' || Auth::user()->role == 'Teachers' || Auth::user()->role == 'Students')
+                @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Prodi' || Auth::user()->role == 'Teachers' || Auth::user()->role == 'Students' || Auth::user()->role == 'Treasurer')
                 <li class="menu-title">
                     <span>Contact</span>
                 </li>

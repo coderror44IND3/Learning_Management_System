@@ -31,5 +31,8 @@ class Students extends Model
     {
         return $this->hasMany(Classroom::class);
         return $this->hasMany(Assigment::class);
+        return $this->hasMany(Organization::class);
+        return $this->hasMany(Presence_Students::class);
+        return $this->hasMany(Assigment::class);
     }
 }

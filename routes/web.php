@@ -41,6 +41,9 @@ Route::get('tablelibraryy', [App\Http\Controllers\LibraryController::class, 'tab
 Route::get('classroom', [App\Http\Controllers\ClassroomControllers::class, 'index'])->name('classroom.index')->middleware('auth');
 Route::get('table', [App\Http\Controllers\ClassroomControllers::class, 'table'])->name('classroom.table')->middleware('auth');
 
+// Route GET ( 'Organization' )
+Route::get('organization', [App\Http\Controllers\OrganizationControllers::class, 'index'])->name('organization.index')->middleware('auth');
+
 // Route GET ( 'Login' )
 Route::get('/login', [App\Http\Controllers\UserController::class, 'index'])->middleware('auth');
 

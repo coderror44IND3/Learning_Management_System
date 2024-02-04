@@ -1,7 +1,7 @@
 @extends('admin.layouts.index')
 @section('content')
 <div class="page-wrapper">
-    @if(Auth::user()->role == 'Students' || Auth::user()->role == 'Admin')
+    @if(Auth::user()->role == 'Students' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Treasurer')
     <div class="content container-fluid">
         @include('sweetalert::alert')
         <div class="page-header">
@@ -111,8 +111,10 @@
                     <hr>
                     <div id="" class="">
                         <a class="list-group-item list-group-item-action active">Students</a>
+                        @if(Auth::user()->role == 'Students' || Auth::user()->role == 'Admin')
                         <a class="list-group-item list-group-item-action" href="{{ route('assigment.index') }}">Assigments</a>
                         <a class="list-group-item list-group-item-action" href="{{ route('grade_class.index') }}">Lesson Students</a>
+                        @endif
                     </div>
                 </div>
 
@@ -237,7 +239,7 @@
                             </div>
                         </div>
                         <div class="col-auto text-end float-end ms-auto download-grp mt-3">
-                            @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
+                            @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students' || Auth::user()->role == 'Treasurer')
                             <button class="btn btn-small btn-primary" onclick="tablemoney();"> <i class="fas fa-file-invoice-dollar" title="Money Class"> </i> Money Class </button>
                             @endif
                             @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
@@ -252,6 +254,7 @@
                         </div>
                     </div>
                     <hr>
+                    @if(Auth::user()->role == 'Students' || Auth::user()->role == 'Admin')
                     <div class="table-responsive mt-3">
                         <table class="table border-0 star-student table-hover table-center mb-0 table-striped" id="dataTable">
                             <thead class="text-center details-teacher" bgcolor='#0D6EFD'>
@@ -309,6 +312,7 @@
                             @endforeach
                         </table>
                     </div>
+                    @endif
                 </div>
 
             </div>

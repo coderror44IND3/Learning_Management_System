@@ -1,7 +1,7 @@
 @extends('admin.layouts.index')
 @section('content')
 <div class="page-wrapper">
-    @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students')
+    @if(Auth::user()->role == 'Admin' || Auth::user()->role == 'Students' || Auth::user()->role == 'Treasurer')
     <div class="content container-fluid">
         @include('sweetalert::alert')
         <div class="page-header">
@@ -92,7 +92,7 @@
 
             <div class="row my-3">
                 <div class="col-md-12 col-lg-5">
-                    @if(Auth::user()->role == 'Students' || Auth::user()->role == 'Admin')
+                    @if(Auth::user()->role == 'Students' || Auth::user()->role == 'Admin' || Auth::user()->role == 'Treasurer')
                     <button id="pay-button" class="text-success text-white btn btn-small btn-primary"><i class="fas fa-file-invoice-dollar text-white"> Class Money </i> </button>
                     @endif
                     @if(Auth::user()->role == 'Treasurer' || Auth::user()->role == 'Admin')
@@ -100,24 +100,27 @@
                     @endif
                 </div>
             </div>
+
             @foreach($money_class as $money)
             <div class="col-md-6 col-xl-4 col-sm-12 d-flex">
                 <div class="blog grid-blog flex-fill">
+                    <div class="dropdown dropdown-action" style="float: right;">
+                        <a href="{{ route('money.index') }}" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+                    </div>
                     <div class="blog-image">
-                        <a href="blog-details.html"><img class="img-fluid" src="{{ asset('admin/assets/img/category/blog-6.jpg') }}" alt="Post Image"></a>
+                        <a href="{{ route('money.index') }}"><img class="img-fluid" src="{{ asset('admin/assets/img/category/blog-6.jpg') }}" alt="Post Image"></a>
                     </div>
 
                     <div class="blog-content">
                         <ul class="entry-meta meta-item">
                             <li>
                                 <div class="post-author">
-                                    <a href="{{ route('library.index') }}">
+                                    <a href="{{ route('money.index') }}">
                                         <img src="{{ asset('admin/assets/img/logo-small.png') }}" alt="Post Author">
                                         <span>
                                             <span class="post-title"> Classroom {{ $money->class_students }} </span>
-                                            <span class="post-title mt-2"><i class="fas fa-calendar-day"> {{ $money->date }} </i> </span>
-                                            <span class="post-date mt-2"><i class="far fa-clock mt-2"> {{ $money->clock }} </i> </span><br>
-                                            <span class="post-date text-success mt-2"><i class="fas fa-file-invoice-dollar mt-2"> Rp. {{ number_format($money->money_students,0,',','.') }} </i> </span>
+                                            <span class="post-title mt-2"><i class="far fa-calendar-alt"> {{ $money->date }} </i> &nbsp; <i class="far fa-clock mt-2"> {{ $money->clock }} </i> </span>
+                                            <span class="post-date text-success mt-2"><i class="far fa-money-bill-alt mt-2"> Rp. {{ number_format($money->money_students,0,',','.') }} </i> </span>
                                         </span>
                                     </a>
                                 </div>
@@ -160,7 +163,6 @@
                 </div>
             </div>
             @endforeach
-
         </div>
 
     </div>
